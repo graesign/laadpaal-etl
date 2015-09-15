@@ -4,6 +4,7 @@
     <Configuration>
       <Name>Development</Name>
       <Options>
+        <StartObjectID>00_ST_Initial_FileHandling_ELAAD.dtsx</StartObjectID>
         <Run64BitRuntime>true</Run64BitRuntime>
         <UserIDs>
           <ConfigurationSetting>
