@@ -1,0 +1,1442 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/17/2015 1:21:00 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODENHOVEN-PC"
+  DTS:CreatorName="ODENHOVEN-PC\Peter"
+  DTS:DTSID="{F431654D-F4A1-4CAB-B09D-08F3F7A293EC}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3436.0"
+  DTS:LocaleID="1043"
+  DTS:ObjectName="11_DWH_DIM_RFID"
+  DTS:PackageType="5"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{DAF2DFA6-2CDB-4309-B0D7-F97B98267030}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\TO DIM RFID"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{207AA84F-AB9D-4509-901A-59DA3E215B3B}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TO DIM RFID"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\TO DIM RFID\Conditional Split"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\TO DIM RFID\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TO DIM RFID\Conditional Split.Inputs[Conditional Split Input].Columns[Ref_ServiceProvider]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Ref_ServiceProvider"
+                      lineageId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Match Output].Columns[Ref_ServiceProvider]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\Conditional Split.Inputs[Conditional Split Input].Columns[Ref_ContractID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Ref_ContractID"
+                      lineageId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Match Output].Columns[Ref_ContractID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TO DIM RFID\Conditional Split.Outputs[incomplete]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="incomplete"
+                  synchronousInputId="Package\TO DIM RFID\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Match Output].Columns[Ref_ContractID]}) || [ISNULL](#{Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Match Output].Columns[Ref_ServiceProvider]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(Ref_ContractID) || ISNULL(Ref_ServiceProvider)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TO DIM RFID\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\TO DIM RFID\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TO DIM RFID\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\TO DIM RFID\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TO DIM RFID\DEFAULT VALUES"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DEFAULT VALUES"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\TO DIM RFID\DEFAULT VALUES.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DEFAULT VALUES.Inputs[Derived Column Input].Columns[OwnerType]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="OwnerType"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[OwnerType]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DEFAULT VALUES.Inputs[Derived Column Input].Columns[UseType]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="UseType"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[UseType]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"onbekend"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"onbekend"</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DEFAULT VALUES.Inputs[Derived Column Input].Columns[CardStatus]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CardStatus"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[CardStatus]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DEFAULT VALUES.Inputs[Derived Column Input].Columns[MaxCharges]"
+                      cachedDataType="r8"
+                      cachedName="MaxCharges"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[MaxCharges]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DEFAULT VALUES.Inputs[Derived Column Input].Columns[MaxCapacity]"
+                      cachedDataType="r8"
+                      cachedName="MaxCapacity"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[MaxCapacity]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\TO DIM RFID\DEFAULT VALUES.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Output].Columns[CardProvider]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Output].Columns[CardProvider]"
+                      name="CardProvider"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Output].Columns[LoadDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Output].Columns[LoadDateTime]"
+                      name="LoadDateTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\TO DIM RFID\DEFAULT VALUES.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TO DIM RFID\DIM_RFID"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DIM_RFID"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DIM_RFID]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TO DIM RFID\DIM_RFID.Connections[OleDbConnection]"
+                  connectionManagerID="{241EE021-80D9-4EBC-A867-B30F4CD9920E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[chief-dt.hva.nl.CHIEF_DWH_TEST.POdenhoven]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].Columns[CardProvider]"
+                      cachedDataType="i4"
+                      cachedName="CardProvider"
+                      externalMetadataColumnId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[CardProvider]"
+                      lineageId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Output].Columns[CardProvider]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].Columns[OwnerType]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="OwnerType"
+                      externalMetadataColumnId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[OwnerType]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[OwnerType]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].Columns[CardStatus]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CardStatus"
+                      externalMetadataColumnId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[CardStatus]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[CardStatus]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].Columns[MaxCharges]"
+                      cachedDataType="r8"
+                      cachedName="MaxCharges"
+                      externalMetadataColumnId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[MaxCharges]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[MaxCharges]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].Columns[MaxCapacity]"
+                      cachedDataType="r8"
+                      cachedName="MaxCapacity"
+                      externalMetadataColumnId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[MaxCapacity]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[MaxCapacity]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].Columns[RFID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="RFID"
+                      externalMetadataColumnId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[RFID]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].Columns[LoadDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LoadDateTime"
+                      externalMetadataColumnId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[LoadDateTime]"
+                      lineageId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Output].Columns[LoadDateTime]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].Columns[UseType]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="UseType"
+                      externalMetadataColumnId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[UseType]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[UseType]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].Columns[Contract_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Contract_ID"
+                      externalMetadataColumnId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[ContractID]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[Contract_ID]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].Columns[Service_Provider]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Service_Provider"
+                      externalMetadataColumnId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[ServiceProvider]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[Service_Provider]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[CardProvider]"
+                      dataType="wstr"
+                      length="50"
+                      name="CardProvider" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[OwnerType]"
+                      dataType="wstr"
+                      length="50"
+                      name="OwnerType" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[CardStatus]"
+                      dataType="wstr"
+                      length="50"
+                      name="CardStatus" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[MaxCharges]"
+                      dataType="r8"
+                      name="MaxCharges" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[MaxCapacity]"
+                      dataType="r8"
+                      name="MaxCapacity" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      dataType="wstr"
+                      length="50"
+                      name="RFID" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[LoadDateTime]"
+                      dataType="dbTimeStamp"
+                      name="LoadDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[RFID_skey]"
+                      dataType="i8"
+                      name="RFID_skey" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[UseType]"
+                      dataType="wstr"
+                      length="50"
+                      name="UseType" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[ContractID]"
+                      dataType="wstr"
+                      length="50"
+                      name="ContractID" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input].ExternalColumns[ServiceProvider]"
+                      dataType="wstr"
+                      length="50"
+                      name="ServiceProvider" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TO DIM RFID\DIM_RFID.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\DIM_RFID.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\DIM_RFID.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\DIM_RFID.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TO DIM RFID\EXISTING RFID"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="EXISTING RFID"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[DIM_RFID]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[DIM_RFID]) [refTable]
+where [refTable].[RFID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="RFID_skey" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RFID" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CardProvider" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OwnerType" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="UseType" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CardStatus" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaxCharges" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaxCapacity" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ContractID" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ServiceProvider" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LoadDateTime" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[RFID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TO DIM RFID\EXISTING RFID.Connections[OleDbConnection]"
+                  connectionManagerID="{241EE021-80D9-4EBC-A867-B30F4CD9920E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[chief-dt.hva.nl.CHIEF_DWH_TEST.POdenhoven]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\TO DIM RFID\EXISTING RFID.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TO DIM RFID\EXISTING RFID.Inputs[Lookup Input].Columns[RFID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="RFID"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[RFID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">RFID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\TO DIM RFID\EXISTING RFID.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Match Output].Columns[Ref_ServiceProvider]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Match Output].Columns[Ref_ServiceProvider]"
+                      name="Ref_ServiceProvider"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ServiceProvider</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Match Output].Columns[Ref_ContractID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Match Output].Columns[Ref_ContractID]"
+                      name="Ref_ContractID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ContractID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\TO DIM RFID\EXISTING RFID.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\TO DIM RFID\EXISTING RFID.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SELECT ROWS FROM PREDWH_RFID"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ST_TBL_Transaction_Transformed]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT [RFID]
+      ,[Contract_ID]
+      ,[Service_Provider]
+      ,[OwnerType]
+      ,[UseType]
+      ,[CardStatus]
+      ,[MaxCharges]
+      ,[MaxCapacity]
+      ,[Checked]
+  FROM [CHIEF_STAGING].[dbo].[ST_TBL_PREDWH_RFID]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Connections[OleDbConnection]"
+                  connectionManagerID="{241EE021-80D9-4EBC-A867-B30F4CD9920E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[chief-dt.hva.nl.CHIEF_DWH_TEST.POdenhoven]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[Contract_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[Contract_ID]"
+                      length="255"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[Contract_ID]"
+                      name="Contract_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[RFID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[RFID]"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[RFID]"
+                      name="RFID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[Service_Provider]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[Service_Provider]"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[Service_Provider]"
+                      name="Service_Provider"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[OwnerType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[OwnerType]"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[OwnerType]"
+                      name="OwnerType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[UseType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[UseType]"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[UseType]"
+                      name="UseType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[CardStatus]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[CardStatus]"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[CardStatus]"
+                      name="CardStatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[MaxCharges]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[MaxCharges]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[MaxCharges]"
+                      name="MaxCharges"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[MaxCapacity]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[MaxCapacity]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[MaxCapacity]"
+                      name="MaxCapacity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[Checked]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[Checked]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[Checked]"
+                      name="Checked"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[Contract_ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Contract_ID" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[RFID]"
+                      dataType="wstr"
+                      length="50"
+                      name="RFID" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[Service_Provider]"
+                      dataType="wstr"
+                      length="50"
+                      name="Service_Provider" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[OwnerType]"
+                      dataType="wstr"
+                      length="50"
+                      name="OwnerType" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[UseType]"
+                      dataType="wstr"
+                      length="50"
+                      name="UseType" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[CardStatus]"
+                      dataType="wstr"
+                      length="50"
+                      name="CardStatus" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[MaxCharges]"
+                      dataType="r8"
+                      name="MaxCharges" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[MaxCapacity]"
+                      dataType="r8"
+                      name="MaxCapacity" />
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].ExternalColumns[Checked]"
+                      dataType="bool"
+                      name="Checked" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[RFID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[RFID]"
+                      name="RFID" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[Contract_ID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[Contract_ID]"
+                      name="Contract_ID" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[Service_Provider]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[Service_Provider]"
+                      name="Service_Provider" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[OwnerType]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[OwnerType]"
+                      name="OwnerType" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[UseType]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[UseType]"
+                      name="UseType" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[CardStatus]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[CardStatus]"
+                      name="CardStatus" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[MaxCharges]"
+                      dataType="r8"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[MaxCharges]"
+                      name="MaxCharges" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[MaxCapacity]"
+                      dataType="r8"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[MaxCapacity]"
+                      name="MaxCapacity" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[Checked]"
+                      dataType="bool"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[Checked]"
+                      name="Checked" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TO DIM RFID\Update existing record"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update existing record"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[DIM_RFID]
+   SET 
+      [ContractID] = ?
+      ,[ServiceProvider] = ?
+,LoadDateTime=Getdate()
+      
+ WHERE RFID=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TO DIM RFID\Update existing record.Connections[OleDbConnection]"
+                  connectionManagerID="{241EE021-80D9-4EBC-A867-B30F4CD9920E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[chief-dt.hva.nl.CHIEF_DWH_TEST.POdenhoven]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input].Columns[RFID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="RFID"
+                      externalMetadataColumnId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[RFID]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input].Columns[Service_Provider]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Service_Provider"
+                      externalMetadataColumnId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[Service_Provider]" />
+                    <inputColumn
+                      refId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input].Columns[Contract_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Contract_ID"
+                      externalMetadataColumnId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output].Columns[Contract_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TO DIM RFID\Update existing record.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\TO DIM RFID\Update existing record.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TO DIM RFID\Update existing record.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\Update existing record.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TO DIM RFID\Update existing record.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TO DIM RFID\Update existing record.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\TO DIM RFID.Paths[Derived Column Output]"
+              endId="Package\TO DIM RFID\EXISTING RFID.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\TO DIM RFID\DEFAULT VALUES.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\TO DIM RFID.Paths[incomplete]"
+              endId="Package\TO DIM RFID\Update existing record.Inputs[OLE DB Command Input]"
+              name="incomplete"
+              startId="Package\TO DIM RFID\Conditional Split.Outputs[incomplete]" />
+            <path
+              refId="Package\TO DIM RFID.Paths[Lookup Match Output]"
+              endId="Package\TO DIM RFID\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\TO DIM RFID.Paths[Lookup No Match Output]"
+              endId="Package\TO DIM RFID\DIM_RFID.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\TO DIM RFID\EXISTING RFID.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\TO DIM RFID.Paths[OLE DB Source Output]"
+              endId="Package\TO DIM RFID\DEFAULT VALUES.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="142,42"
+          Id="Package\TO DIM RFID"
+          TopLeft="157,48" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\TO DIM RFID">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\TO DIM RFID\DEFAULT VALUES"
+          TopLeft="178,134" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\TO DIM RFID\EXISTING RFID"
+          TopLeft="198,220" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\TO DIM RFID\Update existing record"
+          TopLeft="336,424" />
+        <NodeLayout
+          Size="128,42"
+          Id="Package\TO DIM RFID\DIM_RFID"
+          TopLeft="34,339" />
+        <NodeLayout
+          Size="254,42"
+          Id="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID"
+          TopLeft="137,40" />
+        <EdgeLayout
+          Id="Package\TO DIM RFID.Paths[OLE DB Source Output]"
+          TopLeft="261.75,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TO DIM RFID.Paths[Lookup No Match Output]"
+          TopLeft="250,262">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-152,77"
+              Start="0,0"
+              End="-152,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.28125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.28125"
+                    Point2="0,31.28125"
+                    Point3="-4,31.28125" />
+                  <mssgle:LineSegment
+                    End="-148,31.28125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-148,31.28125"
+                    Point2="-152,31.28125"
+                    Point3="-152,35.28125" />
+                  <mssgle:LineSegment
+                    End="-152,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-131.80638671875,36.28125,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TO DIM RFID.Paths[Derived Column Output]"
+          TopLeft="259.5,176">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.5,44"
+              Start="0,0"
+              End="14.5,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
+                  <mssgle:LineSegment
+                    End="10.5,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.5,22"
+                    Point2="14.5,22"
+                    Point3="14.5,26" />
+                  <mssgle:LineSegment
+                    End="14.5,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\TO DIM RFID\Conditional Split"
+          TopLeft="358,341" />
+        <EdgeLayout
+          Id="Package\TO DIM RFID.Paths[Lookup Match Output]"
+          TopLeft="298,262">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="137.5,79"
+              Start="0,0"
+              End="137.5,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.09375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.09375"
+                    Point2="0,32.09375"
+                    Point3="4,32.09375" />
+                  <mssgle:LineSegment
+                    End="133.5,32.09375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="133.5,32.09375"
+                    Point2="137.5,32.09375"
+                    Point3="137.5,36.09375" />
+                  <mssgle:LineSegment
+                    End="137.5,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="20.55861328125,37.09375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\TO DIM RFID.Paths[incomplete]"
+          TopLeft="432,383">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.55494140625,10.9453125,49.1098828125,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\TO DIM RFID\EXISTING RFID">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_RFID]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TO DIM RFID\DIM_RFID">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TO DIM RFID\SELECT ROWS FROM PREDWH_RFID">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

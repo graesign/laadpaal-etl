@@ -1,0 +1,2277 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/3/2015 5:18:24 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODENHOVEN-PC"
+  DTS:CreatorName="ODENHOVEN-PC\Peter"
+  DTS:DTSID="{54E2EF69-E3C2-45DF-90FB-78981B690699}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3436.0"
+  DTS:LocaleID="1043"
+  DTS:ObjectName="07_ST_To_Transaction_Snapshot"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{59363B37-CEE2-4B4F-9CFB-33F0D0077CFF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9F911F76-2BD5-4730-AFEB-2EAF98ABB1BF}"
+      DTS:ObjectName="chief-dt.hva.nl.CHIEF_STAGING.POdenhoven">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=chief-dt.hva.nl;User ID=POdenhoven;Initial Catalog=CHIEF_STAGING;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4JstfLtXvkaK6QjxhqL14gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAe5Ebo4u6ROD9TB7ojPJQp+1ua/egpONKqGCyG7X2mRQAAAAAOgAAAAAIAACAAAAC/QtbBRsVmhs81RJQ2mhEplhKhGCllHcjibGMKnTfK7CAAAADYF6N5fkI5Vgv8DXg+XSi4X+ubG+7SEFqxrOvCoHLDlUAAAAB02xnx1bjN/vhyZr8+HgElt/Crrqst/q/PM/xnoN+/2XRzMX3LcWf5mOXNEwEPTm/YvsyQuJHmCm06ynNf2CPE</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{53DAEEDA-55B5-479E-9DCB-9FA8D53EAA53}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="CHARGE START + END"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Inputs[Derived Column Input].Columns[StartConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartConnectionDateTime"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Inputs[Derived Column Input].Columns[ChargeTime]"
+                      cachedDataType="r8"
+                      cachedName="ChargeTime"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ChargeTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Inputs[Derived Column Input].Columns[EndChargeDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndChargeDateTime"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndChargeDateTime]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEADD]("mi",(DT_I8)(#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ChargeTime]} * 60),#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEADD("mi",(DT_I8)(ChargeTime * 60),StartConnectionDateTime)</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Outputs[Derived Column Output].Columns[ChargeTimeMinutes]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Outputs[Derived Column Output].Columns[ChargeTimeMinutes]"
+                      name="ChargeTimeMinutes"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ChargeTime]} * 60</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ChargeTime * 60</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="CHARGEINFO"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Inputs[Conditional Split Input].Columns[ChargeTime]"
+                      cachedDataType="r8"
+                      cachedName="ChargeTime"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ChargeTime]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Outputs[ChargeInfoNOTAvailable]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="ChargeInfoNOTAvailable"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ChargeTime]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(ChargeTime)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Outputs[ChargeInfoAvailable]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="ChargeInfoAvailable"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="TIMESETTINGS CHARGED"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Inputs[Derived Column Input].Columns[StartChargeDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartChargeDateTime"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartChargeDateTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Inputs[Derived Column Input].Columns[EndChargeDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndChargeDateTime"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndChargeDateTime]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[StartChargeDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[StartChargeDate]"
+                      name="StartChargeDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DATE)#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartChargeDateTime]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DATE)StartChargeDateTime</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[StartChargeTimeHour]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[StartChargeTimeHour]"
+                      name="StartChargeTimeHour"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("Hh",#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartChargeDateTime]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("Hh",StartChargeDateTime)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[StartChargeTimeMinute]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[StartChargeTimeMinute]"
+                      name="StartChargeTimeMinute"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("mi",#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartChargeDateTime]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("mi",StartChargeDateTime)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[EndChargeDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[EndChargeDate]"
+                      name="EndChargeDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DATE)#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndChargeDateTime]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DATE)EndChargeDateTime</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[EndChargeTimeHour]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[EndChargeTimeHour]"
+                      name="EndChargeTimeHour"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("Hh",#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndChargeDateTime]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("Hh",EndChargeDateTime)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[EndChargeTimeMinute]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[EndChargeTimeMinute]"
+                      name="EndChargeTimeMinute"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("mi",#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndChargeDateTime]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("mi",EndChargeDateTime)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="TIMESETTINGS CONNECTED"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Inputs[Derived Column Input].Columns[StartConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartConnectionDateTime"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Inputs[Derived Column Input].Columns[EndConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndConnectionDateTime"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionDate]"
+                      name="StartConnectionDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DATE)(DT_DBDATE)#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DATE)(DT_DBDATE)StartConnectionDateTime</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionDate]"
+                      name="EndConnectionDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DATE)(DT_DBDATE)#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DATE)(DT_DBDATE)EndConnectionDateTime</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionTimeHour]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionTimeHour]"
+                      name="StartConnectionTimeHour"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("Hh",#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("Hh",StartConnectionDateTime)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionTimeMinute]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionTimeMinute]"
+                      name="StartConnectionTimeMinute"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("mi",#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("mi",StartConnectionDateTime)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionTimeHour]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionTimeHour]"
+                      name="EndConnectionTimeHour"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("Hh",#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("Hh",EndConnectionDateTime)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionTimeMinute]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionTimeMinute]"
+                      name="EndConnectionTimeMinute"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("mi",#{Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("mi",EndConnectionDateTime)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="TRANSACTION SNAPHOT"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ST_TBL_Transaction_Snapshot]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                  connectionManagerRefId="Package.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[RFID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RFID"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[RFID]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[StartConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartConnectionDateTime"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[EndConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndConnectionDateTime"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[ConnectionTime]"
+                      cachedDataType="r8"
+                      cachedName="ConnectionTime"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[ConnectionTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ConnectionTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[ChargeTime]"
+                      cachedDataType="r8"
+                      cachedName="ChargeTime"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[ChargeTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ChargeTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[kWh]"
+                      cachedDataType="r8"
+                      cachedName="kWh"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[kWh]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[kWh]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[Charge_Point_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Charge_Point_ID"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Charge_Point_ID]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[ExecutionInstanceGUID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ExecutionInstanceGUID"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[Location_skey]"
+                      cachedDataType="i8"
+                      cachedName="Location_skey"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[Location_skey]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Location_skey]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[StartChargeDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartChargeDateTime"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartChargeDateTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[EndChargeDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndChargeDateTime"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndChargeDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndChargeDateTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[StartConnectionDate]"
+                      cachedDataType="date"
+                      cachedName="StartConnectionDate"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDate]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionDate]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[EndConnectionDate]"
+                      cachedDataType="date"
+                      cachedName="EndConnectionDate"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDate]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionDate]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[StartConnectionTimeHour]"
+                      cachedDataType="i4"
+                      cachedName="StartConnectionTimeHour"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionTimeHour]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionTimeHour]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[StartConnectionTimeMinute]"
+                      cachedDataType="i4"
+                      cachedName="StartConnectionTimeMinute"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionTimeMinute]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionTimeMinute]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[EndConnectionTimeHour]"
+                      cachedDataType="i4"
+                      cachedName="EndConnectionTimeHour"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionTimeHour]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionTimeHour]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[EndConnectionTimeMinute]"
+                      cachedDataType="i4"
+                      cachedName="EndConnectionTimeMinute"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionTimeMinute]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionTimeMinute]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[ChargeTimeMinutes]"
+                      cachedDataType="r8"
+                      cachedName="ChargeTimeMinutes"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[ChargeTimeMinutes]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Outputs[Derived Column Output].Columns[ChargeTimeMinutes]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[StartChargeDate]"
+                      cachedDataType="date"
+                      cachedName="StartChargeDate"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeDate]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[StartChargeDate]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[StartChargeTimeHour]"
+                      cachedDataType="i4"
+                      cachedName="StartChargeTimeHour"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeTimeHour]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[StartChargeTimeHour]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[StartChargeTimeMinute]"
+                      cachedDataType="i4"
+                      cachedName="StartChargeTimeMinute"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeTimeMinute]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[StartChargeTimeMinute]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[EndChargeDate]"
+                      cachedDataType="date"
+                      cachedName="EndChargeDate"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndChargeDate]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[EndChargeDate]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[EndChargeTimeHour]"
+                      cachedDataType="i4"
+                      cachedName="EndChargeTimeHour"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndChargeTimeHour]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[EndChargeTimeHour]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].Columns[EndChargeTimeMinute]"
+                      cachedDataType="i4"
+                      cachedName="EndChargeTimeMinute"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndChargeTimeMinute]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output].Columns[EndChargeTimeMinute]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[Location_skey]"
+                      dataType="i8"
+                      name="Location_skey" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      dataType="wstr"
+                      length="255"
+                      name="RFID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Charge_Point_ID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[kWh]"
+                      dataType="r8"
+                      name="kWh" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDate]"
+                      dataType="dbDate"
+                      name="StartConnectionDate" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionTimeHour]"
+                      dataType="i4"
+                      name="StartConnectionTimeHour" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionTimeMinute]"
+                      dataType="i4"
+                      name="StartConnectionTimeMinute" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[ConnectionTime]"
+                      dataType="r8"
+                      name="ConnectionTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDate]"
+                      dataType="dbDate"
+                      name="EndConnectionDate" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionTimeHour]"
+                      dataType="i4"
+                      name="EndConnectionTimeHour" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionTimeMinute]"
+                      dataType="i4"
+                      name="EndConnectionTimeMinute" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartChargeDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeDate]"
+                      dataType="dbDate"
+                      name="StartChargeDate" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeTimeHour]"
+                      dataType="i4"
+                      name="StartChargeTimeHour" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeTimeMinute]"
+                      dataType="i4"
+                      name="StartChargeTimeMinute" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[ChargeTime]"
+                      dataType="r8"
+                      name="ChargeTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[ChargeTimeMinutes]"
+                      dataType="r8"
+                      name="ChargeTimeMinutes" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndChargeDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndChargeDate]"
+                      dataType="dbDate"
+                      name="EndChargeDate" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndChargeTimeHour]"
+                      dataType="i4"
+                      name="EndChargeTimeHour" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[EndChargeTimeMinute]"
+                      dataType="i4"
+                      name="EndChargeTimeMinute" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      length="255"
+                      name="ExecutionInstanceGUID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="TRANSACTION SNAPSHOT NO CHARGEINFO"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ST_TBL_Transaction_Snapshot]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                  connectionManagerRefId="Package.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[StartConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartConnectionDateTime"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[EndConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndConnectionDateTime"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[ConnectionTime]"
+                      cachedDataType="r8"
+                      cachedName="ConnectionTime"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[ConnectionTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ConnectionTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[ChargeTime]"
+                      cachedDataType="r8"
+                      cachedName="ChargeTime"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[ChargeTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ChargeTime]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[kWh]"
+                      cachedDataType="r8"
+                      cachedName="kWh"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[kWh]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[kWh]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[Charge_Point_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Charge_Point_ID"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Charge_Point_ID]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[ExecutionInstanceGUID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ExecutionInstanceGUID"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[StartConnectionDate]"
+                      cachedDataType="date"
+                      cachedName="StartConnectionDate"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDate]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionDate]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[EndConnectionDate]"
+                      cachedDataType="date"
+                      cachedName="EndConnectionDate"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDate]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionDate]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[StartConnectionTimeHour]"
+                      cachedDataType="i4"
+                      cachedName="StartConnectionTimeHour"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionTimeHour]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionTimeHour]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[StartConnectionTimeMinute]"
+                      cachedDataType="i4"
+                      cachedName="StartConnectionTimeMinute"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionTimeMinute]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[StartConnectionTimeMinute]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[EndConnectionTimeHour]"
+                      cachedDataType="i4"
+                      cachedName="EndConnectionTimeHour"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionTimeHour]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionTimeHour]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[EndConnectionTimeMinute]"
+                      cachedDataType="i4"
+                      cachedName="EndConnectionTimeMinute"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionTimeMinute]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output].Columns[EndConnectionTimeMinute]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[Location_skey]"
+                      cachedDataType="i8"
+                      cachedName="Location_skey"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[Location_skey]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Location_skey]" />
+                    <inputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].Columns[RFID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RFID"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[RFID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[ConnectionTime]"
+                      dataType="r8"
+                      name="ConnectionTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[ChargeTime]"
+                      dataType="r8"
+                      name="ChargeTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[kWh]"
+                      dataType="r8"
+                      name="kWh" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Charge_Point_ID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDate]"
+                      dataType="dbDate"
+                      name="StartConnectionDate" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDate]"
+                      dataType="dbDate"
+                      name="EndConnectionDate" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionTimeHour]"
+                      dataType="i4"
+                      name="StartConnectionTimeHour" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionTimeHour]"
+                      dataType="i4"
+                      name="EndConnectionTimeHour" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionTimeMinute]"
+                      dataType="i4"
+                      name="StartConnectionTimeMinute" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionTimeMinute]"
+                      dataType="i4"
+                      name="EndConnectionTimeMinute" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartChargedDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartChargedDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndChargedDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndChargedDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartChargedDate]"
+                      dataType="dbDate"
+                      name="StartChargedDate" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[ChargeTimeMinutes]"
+                      dataType="r8"
+                      name="ChargeTimeMinutes" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndChargedDate]"
+                      dataType="dbDate"
+                      name="EndChargedDate" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartChargedTimeHour]"
+                      dataType="i4"
+                      name="StartChargedTimeHour" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndChargedTimeHour]"
+                      dataType="i4"
+                      name="EndChargedTimeHour" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[StartChargedTimeMinute]"
+                      dataType="i4"
+                      name="StartChargedTimeMinute" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[EndChargedTimeMinute]"
+                      dataType="i4"
+                      name="EndChargedTimeMinute" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      length="255"
+                      name="ExecutionInstanceGUID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[Location_skey]"
+                      dataType="i8"
+                      name="Location_skey" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      dataType="wstr"
+                      length="255"
+                      name="RFID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="TRANSACTION TRANSFORMED"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ST_TBL_Transaction_Transformed]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                  connectionManagerRefId="Package.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[RFID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[RFID]"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[RFID]"
+                      name="RFID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Provider]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Provider]"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Provider]"
+                      name="Provider"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Postalcode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Postalcode]"
+                      length="6"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Postalcode]"
+                      name="Postalcode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[StartConnectionDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]"
+                      name="StartConnectionDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[EndConnectionDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]"
+                      name="EndConnectionDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ConnectionTime]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[ConnectionTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ConnectionTime]"
+                      name="ConnectionTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ChargeTime]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[ChargeTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ChargeTime]"
+                      name="ChargeTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[kWh]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[kWh]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[kWh]"
+                      name="kWh"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Socket]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Socket]"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Socket]"
+                      name="Socket"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Contract_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Contract_ID]"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Contract_ID]"
+                      name="Contract_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Charge_Point_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Charge_Point_ID]"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Charge_Point_ID]"
+                      name="Charge_Point_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[CDR_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[CDR_ID]"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[CDR_ID]"
+                      name="CDR_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[ExecutionInstanceGUID]"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]"
+                      name="ExecutionInstanceGUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Address]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                      length="100"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Address]"
+                      name="Address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Service_Provider]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Service_Provider]"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Service_Provider]"
+                      name="Service_Provider"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Location_skey]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Location_skey]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Location_skey]"
+                      name="Location_skey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[FuzzyAddress]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[FuzzyAddress]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[FuzzyAddress]"
+                      name="FuzzyAddress"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[StartChargeDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[StartChargeDateTime]"
+                      name="StartChargeDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[EndChargeDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[EndChargeDateTime]"
+                      name="EndChargeDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[AmountShortSessions]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[AmountShortSessions]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[AmountShortSessions]"
+                      name="AmountShortSessions"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[RawDataID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[RawDataID]"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[RawDataID]"
+                      name="RawDataID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Filename]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Filename]"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[Filename]"
+                      name="Filename"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[LambdaSyncStation]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[LambdaSyncStation]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[LambdaSyncStation]"
+                      name="LambdaSyncStation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[LambdaSyncRFID]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[LambdaSyncRFID]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[LambdaSyncRFID]"
+                      name="LambdaSyncRFID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[HourtimeConnectedSync]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[HourtimeConnectedSync]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[HourtimeConnectedSync]"
+                      name="HourtimeConnectedSync"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[HourtimeChargedSync]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[HourtimeChargedSync]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[HourtimeChargedSync]"
+                      name="HourtimeChargedSync"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[REMARKS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[REMARKS]"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[REMARKS]"
+                      name="REMARKS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[shortTimeSync]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[shortTimeSync]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[shortTimeSync]"
+                      name="shortTimeSync"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[LoadDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[LoadDateTime]"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].Columns[LoadDateTime]"
+                      name="LoadDateTime"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[RFID]"
+                      dataType="wstr"
+                      length="255"
+                      name="RFID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Provider]"
+                      dataType="wstr"
+                      length="50"
+                      name="Provider" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="50"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="50"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Postalcode]"
+                      dataType="wstr"
+                      length="6"
+                      name="Postalcode" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[StartConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[EndConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[ConnectionTime]"
+                      dataType="r8"
+                      name="ConnectionTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[ChargeTime]"
+                      dataType="r8"
+                      name="ChargeTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[kWh]"
+                      dataType="r8"
+                      name="kWh" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Socket]"
+                      dataType="wstr"
+                      length="50"
+                      name="Socket" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Contract_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Contract_ID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Charge_Point_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Charge_Point_ID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[CDR_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="CDR_ID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      length="255"
+                      name="ExecutionInstanceGUID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="100"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Service_Provider]"
+                      dataType="wstr"
+                      length="50"
+                      name="Service_Provider" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Location_skey]"
+                      dataType="i8"
+                      name="Location_skey" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[FuzzyAddress]"
+                      dataType="bool"
+                      name="FuzzyAddress" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[StartChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartChargeDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[EndChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndChargeDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[AmountShortSessions]"
+                      dataType="i4"
+                      name="AmountShortSessions" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[RawDataID]"
+                      dataType="wstr"
+                      length="50"
+                      name="RawDataID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[Filename]"
+                      dataType="wstr"
+                      length="50"
+                      name="Filename" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[LambdaSyncStation]"
+                      dataType="bool"
+                      name="LambdaSyncStation" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[LambdaSyncRFID]"
+                      dataType="bool"
+                      name="LambdaSyncRFID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[HourtimeConnectedSync]"
+                      dataType="bool"
+                      name="HourtimeConnectedSync" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[HourtimeChargedSync]"
+                      dataType="bool"
+                      name="HourtimeChargedSync" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[REMARKS]"
+                      dataType="wstr"
+                      length="255"
+                      name="REMARKS" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[shortTimeSync]"
+                      dataType="bool"
+                      name="shortTimeSync" />
+                    <externalMetadataColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output].ExternalColumns[LoadDateTime]"
+                      dataType="dbTimeStamp"
+                      name="LoadDateTime" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[RFID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[RFID]"
+                      name="RFID" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Provider]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Provider]"
+                      name="Provider" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Address]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Address]"
+                      name="Address" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Postalcode]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Postalcode]"
+                      name="Postalcode" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Service_Provider]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Service_Provider]"
+                      name="Service_Provider" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Location_skey]"
+                      dataType="i8"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Location_skey]"
+                      name="Location_skey" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[FuzzyAddress]"
+                      dataType="bool"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[FuzzyAddress]"
+                      name="FuzzyAddress" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[StartConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[StartConnectionDateTime]"
+                      name="StartConnectionDateTime" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[EndConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[EndConnectionDateTime]"
+                      name="EndConnectionDateTime" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[ConnectionTime]"
+                      dataType="r8"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[ConnectionTime]"
+                      name="ConnectionTime" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[ChargeTime]"
+                      dataType="r8"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[ChargeTime]"
+                      name="ChargeTime" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[kWh]"
+                      dataType="r8"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[kWh]"
+                      name="kWh" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Socket]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Socket]"
+                      name="Socket" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Contract_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Contract_ID]"
+                      name="Contract_ID" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[StartChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[StartChargeDateTime]"
+                      name="StartChargeDateTime" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[EndChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[EndChargeDateTime]"
+                      name="EndChargeDateTime" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Charge_Point_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Charge_Point_ID]"
+                      name="Charge_Point_ID" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[CDR_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[CDR_ID]"
+                      name="CDR_ID" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[AmountShortSessions]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[AmountShortSessions]"
+                      name="AmountShortSessions" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[RawDataID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[RawDataID]"
+                      name="RawDataID" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Filename]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[Filename]"
+                      name="Filename" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[LambdaSyncStation]"
+                      dataType="bool"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[LambdaSyncStation]"
+                      name="LambdaSyncStation" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[LambdaSyncRFID]"
+                      dataType="bool"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[LambdaSyncRFID]"
+                      name="LambdaSyncRFID" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[HourtimeConnectedSync]"
+                      dataType="bool"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[HourtimeConnectedSync]"
+                      name="HourtimeConnectedSync" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[HourtimeChargedSync]"
+                      dataType="bool"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[HourtimeChargedSync]"
+                      name="HourtimeChargedSync" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[REMARKS]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[REMARKS]"
+                      name="REMARKS" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[shortTimeSync]"
+                      dataType="bool"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[shortTimeSync]"
+                      name="shortTimeSync" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[ExecutionInstanceGUID]"
+                      name="ExecutionInstanceGUID" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[LoadDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[LoadDateTime]"
+                      name="LoadDateTime" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[ChargeInfoAvailable]"
+              endId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Inputs[Derived Column Input]"
+              name="ChargeInfoAvailable"
+              startId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Outputs[ChargeInfoAvailable]" />
+            <path
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[ChargeInfoNOTAvailable]"
+              endId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO.Inputs[OLE DB Destination Input]"
+              name="ChargeInfoNOTAvailable"
+              startId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Outputs[ChargeInfoNOTAvailable]" />
+            <path
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[Derived Column Output]"
+              endId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[Derived Column Output1]"
+              endId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[Derived Column Output2]"
+              endId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[OLE DB Source Output]"
+              endId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="380,42"
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT"
+          TopLeft="262,81" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="226,42"
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED"
+          TopLeft="107,32" />
+        <NodeLayout
+          Size="290,42"
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO"
+          TopLeft="0,476" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CONNECTED"
+          TopLeft="108,149" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGE START + END"
+          TopLeft="369,322" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\CHARGEINFO"
+          TopLeft="108,256" />
+        <EdgeLayout
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[ChargeInfoAvailable]"
+          TopLeft="202,298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="261,24"
+              Start="0,0"
+              End="261,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,5.75933609958506" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,5.75933609958506"
+                    Point2="0,9.75933609958506"
+                    Point3="4,9.75933609958506" />
+                  <mssgle:LineSegment
+                    End="257,9.75933609958506" />
+                  <mssgle:CubicBezierSegment
+                    Point1="257,9.75933609958506"
+                    Point2="261,9.75933609958506"
+                    Point3="261,13.7593360995851" />
+                  <mssgle:LineSegment
+                    End="261,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="85.6461328125,14.7593360995851,89.707734375,11.7119140625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[OLE DB Source Output]"
+          TopLeft="217.75,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[Derived Column Output]"
+          TopLeft="215.5,191">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-36,65"
+              Start="0,0"
+              End="-36,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="-4,32.5" />
+                  <mssgle:LineSegment
+                    End="-32,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-32,32.5"
+                    Point2="-36,32.5"
+                    Point3="-36,36.5" />
+                  <mssgle:LineSegment
+                    End="-36,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[ChargeInfoNOTAvailable]"
+          TopLeft="157,298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12,178"
+              Start="0,0"
+              End="-12,170.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.3817427385892" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,68.3817427385892"
+                    Point2="0,72.3817427385892"
+                    Point3="-4,72.3817427385892" />
+                  <mssgle:LineSegment
+                    End="-8,72.3817427385892" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8,72.3817427385892"
+                    Point2="-12,72.3817427385892"
+                    Point3="-12,76.3817427385892" />
+                  <mssgle:LineSegment
+                    End="-12,170.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-60.6488671875,77.3817427385892,109.297734375,11.7119140625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="202,42"
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TIMESETTINGS CHARGED"
+          TopLeft="368,392" />
+        <EdgeLayout
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[Derived Column Output1]"
+          TopLeft="466,364">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="199,42"
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT"
+          TopLeft="377,478" />
+        <EdgeLayout
+          Id="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT.Paths[Derived Column Output2]"
+          TopLeft="472.75,434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION TRANSFORMED">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPHOT">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FROM TRANSACTION LOCATION TO TRANSACTION SNAPSHOT\TRANSACTION SNAPSHOT NO CHARGEINFO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

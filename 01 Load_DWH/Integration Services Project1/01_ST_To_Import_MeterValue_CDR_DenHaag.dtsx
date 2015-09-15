@@ -1,0 +1,1629 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/7/2015 11:21:31 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODENHOVEN-PC"
+  DTS:CreatorName="ODENHOVEN-PC\Peter"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{57F6AB00-007A-4C43-8076-12F1E993A187}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3436.0"
+  DTS:LocaleID="1043"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="01_ST_To_Import_MeterValue_CDR_DenHaag"
+  DTS:VersionBuild="144"
+  DTS:VersionGUID="{5B3F9FAB-65E7-4A45-9308-9E9AB5CC60C2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{05E42341-1B2D-4D20-BC01-D7C015D20E7E}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODENHOVEN-PC\SQLSERVER;Initial Catalog=CHIEF_STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{AA35BCF5-7229-49E5-A752-0BE478155073}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::ForEachFileNameFull]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Import_DenHaag\Metervalue\CDR_Ballast Nedam_ANWB_201505_20150601.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionExcel]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{A5A0B3C0-823A-46BE-864B-8D5027DB682A}"
+      DTS:ObjectName="SourceConnectionExcel">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::File_Path_CDR]+ @[User::ForEachFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Import_DenHaag\Metervalue\CDR_Ballast Nedam_ANWB_201505_20150601.xlsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionZip]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{41A95CAC-0155-423C-B4C6-6E5C1364AA14}"
+      DTS:ObjectName="SourceConnectionZip">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ForEachFileNameArchive]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Import_DenHaag\Metervalue\CDR_Ballast Nedam_ANWB_201505_20150601.zip" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19691477-FD3D-4A8E-93CA-568E2C94ACF2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameFound">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9F573013-C173-48CB-8E08-CF547554DC9F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="File_Path_Archive">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Archive\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D1400FEB-E98F-468A-805D-8B1CC0EDB706}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="File_Path_CDR">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Import_DenHaag\Metervalue\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D53818E6-A028-44FC-A3F8-C27516A8A172}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="File_Path_Duplicate">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Rejected_Duplicates\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F9C1102E-C869-42A0-BF6B-81477184FDDB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ForEachFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">CDR_Ballast Nedam_ANWB_201505_20150601.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9492CF9F-7510-4C6F-9322-ED467C6BAD56}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="REPLACE(@[User::File_Path_CDR]+ @[User::ForEachFileName] , &quot;xlsx&quot;,&quot;zip&quot;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ForEachFileNameArchive">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Import_DenHaag\Metervalue\CDR_Ballast Nedam_ANWB_201505_20150601.zip</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F906E3A5-4F85-401F-8B21-E579FCFC6026}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::File_Path_CDR]+ @[User::ForEachFileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ForEachFileNameFull">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Import_DenHaag\Metervalue\CDR_Ballast Nedam_ANWB_201505_20150601.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{40C52229-BC1C-4446-A4E2-B895D5F4F9AF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Zip_Exe_Path">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\7z.exe</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract all  XLS files"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:DelayValidation="True"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{DD84E394-6CC2-4287-800E-1CC109FF93F2}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract all  XLS files">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{57E19B4C-2C82-4180-ADBC-D894F2638419}"
+        DTS:ObjectName="{57E19B4C-2C82-4180-ADBC-D894F2638419}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::File_Path_CDR]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Import_DenHaag\Metervalue\" />
+            <FEFEProperty
+              FileSpec="*.xls" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\DELETE FILE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{33980989-3101-49DE-987B-A1E284DCC56C}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DELETE FILE"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="DeleteFile"
+              TaskSourcePath="{A5A0B3C0-823A-46BE-864B-8D5027DB682A}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\DUPLICATE FILE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0E539EEC-C78D-48AE-B261-731B2BCD0727}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DUPLICATE FILE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{660CD9D8-96E4-40AA-A9A5-7196B361825E}"
+              SQLTask:SqlStatementSource="INSERT INTO [ST_LOG_Error]&#xA;           ([errormessage],&#xA;&#x9;filename,&#xA;&#x9;[date],&#xA;&#x9;ExecutionInstanceGUID)&#xA;     VALUES&#xA;           ('File Already extracted',?,GETDATE(),?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ForEachFileNameFull"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\EXISTING FILENAME"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{781DC44C-ED47-4A7D-9D8D-376998549EA3}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXISTING FILENAME"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{660CD9D8-96E4-40AA-A9A5-7196B361825E}"
+              SQLTask:SqlStatementSource="DECLARE @FileNameFound int&#xA;&#xA;SELECT @FileNameFound = &#xA; CASE &#xA;     WHEN EXISTS(SELECT [FileName] &#xA;       FROM [dbo].[ST_LOG_ExtractedFile]&#xA;       WHERE lTrim(rTrim([FileName])) = lTrim(rTrim(?))) &#xA;   THEN 1&#xA;   ELSE 0&#xA; END;&#xA;&#xA;SELECT  ? = @FileNameFound&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ForEachFileNameFull"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::FileNameFound"
+                SQLTask:ParameterDirection="Output"
+                SQLTask:DataType="2"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:DelayValidation="True"
+          DTS:DTSID="{1C3440D8-24B5-4E67-BB8D-3979DAAD93BA}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="IMPORT METERVALUE CDR"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              defaultBufferSize="3145728"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="EXECUTIONINSTANCEGUID"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Outputs[Derived Column Output].Columns[ExecutionInstanceGUID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="38"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Outputs[Derived Column Output].Columns[ExecutionInstanceGUID]"
+                          name="ExecutionInstanceGUID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[System::ExecutionInstanceGUID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[System::ExecutionInstanceGUID]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="IMPORT METERVALUE CDR"
+                  usesDispositions="true"
+                  validateExternalMetadata="False"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[ST_TBL_Import_Metervalue_CDR]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Connections[OleDbConnection]"
+                      connectionManagerID="{660CD9D8-96E4-40AA-A9A5-7196B361825E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[ExecutionInstanceGUID]"
+                          cachedDataType="wstr"
+                          cachedLength="38"
+                          cachedName="ExecutionInstanceGUID"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Outputs[Derived Column Output].Columns[ExecutionInstanceGUID]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[transaction_id]"
+                          cachedDataType="r8"
+                          cachedName="transaction_id"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[transaction_id]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_id]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[chargepoint_identity]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="chargepoint_identity"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[chargepoint_identity]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[chargepoint_identity]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[powersocket_position]"
+                          cachedDataType="r8"
+                          cachedName="powersocket_position"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[powersocket_position]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[powersocket_position]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[transaction_start]"
+                          cachedDataType="date"
+                          cachedName="transaction_start"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[transaction_start]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_start]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[meter_value_time]"
+                          cachedDataType="date"
+                          cachedName="meter_value_time"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[meter_value_time]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[meter_value_time]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[date_start]"
+                          cachedDataType="date"
+                          cachedName="date_start"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[date_start]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[date_start]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[hour_start]"
+                          cachedDataType="r8"
+                          cachedName="hour_start"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[hour_start]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[hour_start]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[minute_start]"
+                          cachedDataType="r8"
+                          cachedName="minute_start"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[minute_start]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[minute_start]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[meter_value]"
+                          cachedDataType="r8"
+                          cachedName="meter_value"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[meter_value]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[meter_value]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[delta]"
+                          cachedDataType="r8"
+                          cachedName="delta"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[delta]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[delta]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[transaction_stop]"
+                          cachedDataType="date"
+                          cachedName="transaction_stop"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[transaction_stop]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_stop]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].Columns[transaction_total]"
+                          cachedDataType="r8"
+                          cachedName="transaction_total"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[transaction_total]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_total]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                          dataType="wstr"
+                          length="50"
+                          name="ExecutionInstanceGUID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[transaction_id]"
+                          dataType="wstr"
+                          length="50"
+                          name="transaction_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[chargepoint_identity]"
+                          dataType="wstr"
+                          length="50"
+                          name="chargepoint_identity" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[powersocket_position]"
+                          dataType="wstr"
+                          length="50"
+                          name="powersocket_position" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[transaction_start]"
+                          dataType="wstr"
+                          length="50"
+                          name="transaction_start" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[meter_value_time]"
+                          dataType="wstr"
+                          length="50"
+                          name="meter_value_time" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[date_start]"
+                          dataType="wstr"
+                          length="50"
+                          name="date_start" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[hour_start]"
+                          dataType="wstr"
+                          length="50"
+                          name="hour_start" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[minute_start]"
+                          dataType="wstr"
+                          length="50"
+                          name="minute_start" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[meter_value]"
+                          dataType="wstr"
+                          length="50"
+                          name="meter_value" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[delta]"
+                          dataType="wstr"
+                          length="50"
+                          name="delta" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[transaction_stop]"
+                          dataType="wstr"
+                          length="50"
+                          name="transaction_stop" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input].ExternalColumns[transaction_total]"
+                          dataType="wstr"
+                          length="50"
+                          name="transaction_total" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG"
+                  componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="METERVALUES CDR DENHAAG"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Blad1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_id]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[transaction_id]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_id]"
+                          name="transaction_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[chargepoint_identity]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[chargepoint_identity]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[chargepoint_identity]"
+                          name="chargepoint_identity"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[powersocket_position]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[powersocket_position]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[powersocket_position]"
+                          name="powersocket_position"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_start]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[transaction_start]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_start]"
+                          name="transaction_start"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[meter_value_time]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[meter_value_time]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[meter_value_time]"
+                          name="meter_value_time"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[date_start]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[date_start]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[date_start]"
+                          name="date_start"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[hour_start]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[hour_start]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[hour_start]"
+                          name="hour_start"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[minute_start]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[minute_start]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[minute_start]"
+                          name="minute_start"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[meter_value]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[meter_value]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[meter_value]"
+                          name="meter_value"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[delta]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[delta]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[delta]"
+                          name="delta"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_stop]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[transaction_stop]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_stop]"
+                          name="transaction_stop"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_total]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[transaction_total]"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].Columns[transaction_total]"
+                          name="transaction_total"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[transaction_id]"
+                          dataType="r8"
+                          name="transaction_id" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[chargepoint_identity]"
+                          dataType="wstr"
+                          length="255"
+                          name="chargepoint_identity" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[powersocket_position]"
+                          dataType="r8"
+                          name="powersocket_position" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[transaction_start]"
+                          dataType="date"
+                          name="transaction_start" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[meter_value_time]"
+                          dataType="date"
+                          name="meter_value_time" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[date_start]"
+                          dataType="date"
+                          name="date_start" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[hour_start]"
+                          dataType="r8"
+                          name="hour_start" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[minute_start]"
+                          dataType="r8"
+                          name="minute_start" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[meter_value]"
+                          dataType="r8"
+                          name="meter_value" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[delta]"
+                          dataType="r8"
+                          name="delta" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[transaction_stop]"
+                          dataType="date"
+                          name="transaction_stop" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output].ExternalColumns[transaction_total]"
+                          dataType="r8"
+                          name="transaction_total" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[transaction_id]"
+                          dataType="r8"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[transaction_id]"
+                          name="transaction_id" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[chargepoint_identity]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[chargepoint_identity]"
+                          name="chargepoint_identity" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[powersocket_position]"
+                          dataType="r8"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[powersocket_position]"
+                          name="powersocket_position" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[transaction_start]"
+                          dataType="date"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[transaction_start]"
+                          name="transaction_start" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[meter_value_time]"
+                          dataType="date"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[meter_value_time]"
+                          name="meter_value_time" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[date_start]"
+                          dataType="date"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[date_start]"
+                          name="date_start" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[hour_start]"
+                          dataType="r8"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[hour_start]"
+                          name="hour_start" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[minute_start]"
+                          dataType="r8"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[minute_start]"
+                          name="minute_start" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[meter_value]"
+                          dataType="r8"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[meter_value]"
+                          name="meter_value" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[delta]"
+                          dataType="r8"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[delta]"
+                          name="delta" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[transaction_stop]"
+                          dataType="date"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[transaction_stop]"
+                          name="transaction_stop" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[transaction_total]"
+                          dataType="r8"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[transaction_total]"
+                          name="transaction_total" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR.Paths[Derived Column Output]"
+                  endId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR.Inputs[Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Extract all  XLS files\IMPORT METERVALUE CDR.Paths[Excel Source Output]"
+                  endId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\INSERT FILENAME"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{81ADFE7E-EC78-479F-A852-FA91EB62FF33}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="INSERT FILENAME"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{660CD9D8-96E4-40AA-A9A5-7196B361825E}"
+              SQLTask:SqlStatementSource="INSERT INTO ST_Log_ExtractedFile  &#xA;(Filename,ExtractionDate,ExecutionInstanceGUID) &#xA;VALUES (?, GETDATE(),?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ForEachFileNameFull"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\MOVE DUPLICATE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{EC47DC55-E4F1-4DEC-9E73-28280B9E0785}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="MOVE DUPLICATE"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="{A5A0B3C0-823A-46BE-864B-8D5027DB682A}"
+              TaskDestinationPath="User::File_Path_Duplicate"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\MOVE ZIP"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{CA3A0BBE-C6B1-4D0D-B09D-4A65D275C265}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="MOVE ZIP"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="{41A95CAC-0155-423C-B4C6-6E5C1364AA14}"
+              TaskDestinationPath="User::File_Path_Archive"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\ZIP FILE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{2AD54744-CFAF-4316-A2EF-0BAEE122EAEB}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ZIP FILE"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">"a -tzip \""+ @[User::ForEachFileNameArchive]  + "\"   \""  + @[User::File_Path_CDR] +@[User::ForEachFileName]   +"\""</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Executable">@[User::Zip_Exe_Path]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\7z.exe"
+              Arguments="a -tzip &quot;C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Import_DenHaag\Metervalue\CDR_Ballast Nedam_ANWB_201505_20150601.zip&quot;   &quot;C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Import_DenHaag\Metervalue\CDR_Ballast Nedam_ANWB_201505_20150601.xlsx&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F0C16FE2-ED69-4FDF-B555-5C50F632787E}"
+          DTS:From="Package\Extract all  XLS files\IMPORT METERVALUE CDR"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Extract all  XLS files\ZIP FILE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{ABDD6FC2-044E-49BB-9241-F8CCEF6B8A77}"
+          DTS:From="Package\Extract all  XLS files\ZIP FILE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Extract all  XLS files\DELETE FILE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{A0CE21AB-5132-43BA-ABF1-192FD6937F64}"
+          DTS:From="Package\Extract all  XLS files\ZIP FILE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Extract all  XLS files\MOVE ZIP" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{49C06617-736A-4A2B-97D4-2F47F01403FB}"
+          DTS:From="Package\Extract all  XLS files\IMPORT METERVALUE CDR"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Extract all  XLS files\INSERT FILENAME" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{1B068827-CD8E-466A-8844-80342504056C}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::FileNameFound]==0"
+          DTS:From="Package\Extract all  XLS files\EXISTING FILENAME"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Extract all  XLS files\IMPORT METERVALUE CDR" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{59D0219B-80AF-4A39-AD9D-10D4A9EF7A82}"
+          DTS:From="Package\Extract all  XLS files\DUPLICATE FILE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Extract all  XLS files\MOVE DUPLICATE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{370284BE-1A8F-4DE5-9E7E-58F43D12C0E4}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::FileNameFound]==1"
+          DTS:From="Package\Extract all  XLS files\EXISTING FILENAME"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Extract all  XLS files\DUPLICATE FILE" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{9951BDB3-6539-4961-ADC9-C928E46FF305}"
+          DTS:ObjectName="{9951BDB3-6539-4961-ADC9-C928E46FF305}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::ForEachFileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOG START"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3B86D630-B937-4ABB-BFC6-ACA1918E1703}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOG START"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{660CD9D8-96E4-40AA-A9A5-7196B361825E}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ST_LOG_PackageRun]&#xA;           ([ExecutionInstanceGUID]&#xA;           ,[PackageID]&#xA;           ,[PackageName]&#xA;           ,[MachineName]&#xA;           ,[UserName]&#xA;           ,[StartTime])&#xA;     VALUES&#xA;           (?,?,?,?,?,GETDATE())&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="72"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="System::MachineName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="System::UserName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE IMPORT METERVALUE CDR"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:DTSID="{F404B6F7-8EA2-4B8E-A571-B3C71C9A5086}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE IMPORT METERVALUE CDR"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{660CD9D8-96E4-40AA-A9A5-7196B361825E}"
+          SQLTask:SqlStatementSource="Truncate table [dbo].[ST_TBL_Import_MeterValue_CDR]&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{00E12888-4344-4252-B240-0A5532A90B4A}"
+      DTS:From="Package\TRUNCATE IMPORT METERVALUE CDR"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract all  XLS files" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{FAAD1E7C-0755-49C3-9759-7A20DD1597FE}"
+      DTS:From="Package\LOG START"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\TRUNCATE IMPORT METERVALUE CDR" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Extract all  XLS files\DELETE FILE"
+          TopLeft="518.25,293.25" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Extract all  XLS files\DUPLICATE FILE"
+          TopLeft="35,111" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Extract all  XLS files\EXISTING FILENAME"
+          TopLeft="64,26" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Extract all  XLS files\IMPORT METERVALUE CDR"
+          TopLeft="289.75,117" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Extract all  XLS files\INSERT FILENAME"
+          TopLeft="657.5,163" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Extract all  XLS files\MOVE DUPLICATE"
+          TopLeft="59,208" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\Extract all  XLS files\MOVE ZIP"
+          TopLeft="299,291" />
+        <NodeLayout
+          Size="119,42"
+          Id="Package\Extract all  XLS files\ZIP FILE"
+          TopLeft="334.75,202.25" />
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint]"
+          TopLeft="394,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.25"
+              Start="0,0"
+              End="0,35.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 1]"
+          TopLeft="412.75,244.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="175.5,49"
+              Start="0,0"
+              End="175.5,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.9900497512438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.9900497512438"
+                    Point2="0,19.9900497512438"
+                    Point3="4,19.9900497512438" />
+                  <mssgle:LineSegment
+                    End="171.5,19.9900497512438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="171.5,19.9900497512438"
+                    Point2="175.5,19.9900497512438"
+                    Point3="175.5,23.9900497512438" />
+                  <mssgle:LineSegment
+                    End="175.5,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 2]"
+          TopLeft="375.75,244.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.75,46.75"
+              Start="0,0"
+              End="-13.75,39.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.0721393034826" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.0721393034826"
+                    Point2="0,19.0721393034826"
+                    Point3="-4,19.0721393034826" />
+                  <mssgle:LineSegment
+                    End="-9.75,19.0721393034826" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.75,19.0721393034826"
+                    Point2="-13.75,19.0721393034826"
+                    Point3="-13.75,23.0721393034826" />
+                  <mssgle:LineSegment
+                    End="-13.75,39.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 3]"
+          TopLeft="497.75,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="159.75,46"
+              Start="0,0"
+              End="152.25,46">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="75.875,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="75.875,0"
+                    Point2="79.875,0"
+                    Point3="79.875,4" />
+                  <mssgle:LineSegment
+                    End="79.875,42" />
+                  <mssgle:CubicBezierSegment
+                    Point1="79.875,42"
+                    Point2="79.875,46"
+                    Point3="83.875,46" />
+                  <mssgle:LineSegment
+                    End="152.25,46" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 4]"
+          TopLeft="180.666666666667,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="213.083333333333,49"
+              Start="0,0"
+              End="213.083333333333,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.8633818589026" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.8633818589026"
+                    Point2="0,19.8633818589026"
+                    Point3="4,19.8633818589026" />
+                  <mssgle:LineSegment
+                    End="209.083333333333,19.8633818589026" />
+                  <mssgle:CubicBezierSegment
+                    Point1="209.083333333333,19.8633818589026"
+                    Point2="213.083333333333,19.8633818589026"
+                    Point3="213.083333333333,23.8633818589026" />
+                  <mssgle:LineSegment
+                    End="213.083333333333,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="98.5416666666667,24.8633818589026,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 5]"
+          TopLeft="114,153">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27.5,55"
+              Start="0,0"
+              End="27.5,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
+                  <mssgle:LineSegment
+                    End="23.5,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.5,27.5"
+                    Point2="27.5,27.5"
+                    Point3="27.5,31.5" />
+                  <mssgle:LineSegment
+                    End="27.5,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 6]"
+          TopLeft="124.333333333333,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10.3333333333333,43"
+              Start="0,0"
+              End="-10.3333333333333,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.431131019037" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.431131019037"
+                    Point2="0,17.431131019037"
+                    Point3="-4,17.431131019037" />
+                  <mssgle:LineSegment
+                    End="-6.33333333333333,17.431131019037" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.33333333333333,17.431131019037"
+                    Point2="-10.3333333333333,17.431131019037"
+                    Point3="-10.3333333333333,21.431131019037" />
+                  <mssgle:LineSegment
+                    End="-10.3333333333333,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-13.1666666666667,22.431131019037,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="852,388"
+          Size="852,431"
+          Id="Package\Extract all  XLS files"
+          TopLeft="225.5,149.083333333333" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\LOG START"
+          TopLeft="166,5" />
+        <NodeLayout
+          Size="264,42"
+          Id="Package\TRUNCATE IMPORT METERVALUE CDR"
+          TopLeft="406.75,74.25" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="538.75,116.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="112.75,32.833333333333"
+              Start="0,0"
+              End="112.75,25.333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.4166666666665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.4166666666665"
+                    Point2="0,16.4166666666665"
+                    Point3="4,16.4166666666665" />
+                  <mssgle:LineSegment
+                    End="108.75,16.4166666666665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="108.75,16.4166666666665"
+                    Point2="112.75,16.4166666666665"
+                    Point3="112.75,20.4166666666665" />
+                  <mssgle:LineSegment
+                    End="112.75,25.333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="233,47">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="305.75,27.25"
+              Start="0,0"
+              End="305.75,19.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.625"
+                    Point2="0,13.625"
+                    Point3="4,13.625" />
+                  <mssgle:LineSegment
+                    End="301.75,13.625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="301.75,13.625"
+                    Point2="305.75,13.625"
+                    Point3="305.75,17.625" />
+                  <mssgle:LineSegment
+                    End="305.75,19.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract all  XLS files\IMPORT METERVALUE CDR">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR"
+          TopLeft="375.5,241.5" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Extract all  XLS files\IMPORT METERVALUE CDR\EXECUTIONINSTANCEGUID"
+          TopLeft="164,122" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG"
+          TopLeft="59,33" />
+        <EdgeLayout
+          Id="Package\Extract all  XLS files\IMPORT METERVALUE CDR.Paths[Excel Source Output]"
+          TopLeft="170.5,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="98.5,47"
+              Start="0,0"
+              End="98.5,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5"
+                    Point2="0,23.5"
+                    Point3="4,23.5" />
+                  <mssgle:LineSegment
+                    End="94.5,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="94.5,23.5"
+                    Point2="98.5,23.5"
+                    Point3="98.5,27.5" />
+                  <mssgle:LineSegment
+                    End="98.5,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files\IMPORT METERVALUE CDR.Paths[Derived Column Output]"
+          TopLeft="269,164">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="210.5,77.5"
+              Start="0,0"
+              End="210.5,70">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.75"
+                    Point2="0,38.75"
+                    Point3="4,38.75" />
+                  <mssgle:LineSegment
+                    End="206.5,38.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="206.5,38.75"
+                    Point2="210.5,38.75"
+                    Point3="210.5,42.75" />
+                  <mssgle:LineSegment
+                    End="210.5,70" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract all  XLS files\IMPORT METERVALUE CDR\METERVALUES CDR DENHAAG">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract all  XLS files\IMPORT METERVALUE CDR\IMPORT METERVALUE CDR">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

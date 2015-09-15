@@ -1,0 +1,425 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/11/2015 7:42:29 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODENHOVEN-PC"
+  DTS:CreatorName="ODENHOVEN-PC\Peter"
+  DTS:DTSID="{7E7D171B-E982-49BD-BA27-16769D7A9F5D}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3436.0"
+  DTS:LocaleID="1043"
+  DTS:ObjectName="99_CDR_Master"
+  DTS:PackageType="5"
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{058DD2DE-1B2F-4FF7-9255-F910B9D0A8F8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1A7512FB-2893-4AA4-BDD2-1998EB50B070}"
+      DTS:ObjectName="chief-dt.hva.nl.CHIEF_STAGING.POdenhoven">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=chief-dt.hva.nl;User ID=POdenhoven;Initial Catalog=CHIEF_STAGING;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA9Ls4LhfoQ0eiKkUQeFyaPgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAMih+cm/iDfXLUs+kFIjpEIjfm2EXsx8w72MOa/FIRNQAAAAAOgAAAAAIAACAAAACNdE084ZqIcuemLFB2bw9Bx7ZZSqtnWw4HD+/KOSC7QCAAAAAcgwjpBq0iDaSrHNfnsphJtPZQbkufBqyVm06qfDyv00AAAAAvuqwVOisooNibIKdZuvEt6qa8hS1phw65/zmOp96UsXlD6CHao7uk3lOML3jTEbtcdMGubqymDjsTENFJjrnh</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{175BE3AA-1FD4-4A20-A4B5-30508358BF8A}"
+      DTS:ObjectName="ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODENHOVEN-PC\SQLSERVER;Initial Catalog=CHIEF_STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Nuon Staging Master Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{32D769C4-5ED0-4498-BBA7-9A0B9E9A81DC}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Nuon Staging Master Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Nuon Staging Master Container\Log Package End"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b9e5bf14-c3ff-4737-b261-9283f93b6cda}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Package End"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{175BE3AA-1FD4-4A20-A4B5-30508358BF8A}"
+              SQLTask:SqlStatementSource="UPDATE   [dbo].[ST_LOG_PackageRun]&#xA;         SET EndTime=GETDATE(),&#xA;&#x9;Duration=DateDIFF(ss,StartTime,GETDATE())&#xA;WHERE ExecutionInstanceGUID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="72"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Nuon Staging Master Container\Log Package Start"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{AC9B69FC-EAF7-44B6-97BB-745163325812}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Package Start"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1A7512FB-2893-4AA4-BDD2-1998EB50B070}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[ST_LOG_PackageRun]&#xA;           ([ExecutionInstanceGUID]&#xA;           ,[PackageID]&#xA;           ,[PackageName]&#xA;           ,[MachineName]&#xA;           ,[UserName]&#xA;           ,[IsParent]&#xA;           ,[StartTime])&#xA;     VALUES&#xA;           (?,?,?,?,?,1,GETDATE())&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="72"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::MachineName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::UserName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Nuon Staging Master Container\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{DDFF63A1-6887-47F2-90C4-278A6F4BFC33}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Nuon Staging Master Container\Sequence Container\Import NUON xls"
+              DTS:CreationName="SSIS.ExecutePackageTask.3"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{27CDFF1D-B25D-4989-A367-91A906C19EE5}"
+              DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Import NUON xls"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>01_ST_Nuon_To_CDR_Import_Transaction.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Nuon Staging Master Container\Sequence Container\Import Utrecht xls"
+              DTS:CreationName="SSIS.ExecutePackageTask.3"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{52B7EAD9-FB3E-408A-ACF7-6B351BE59CF7}"
+              DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Import Utrecht xls"
+              DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <UseProjectReference>True</UseProjectReference>
+                  <PackageName>01_ST_Utrecht_To_CDR_Import_Transaction.dtsx</PackageName>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Nuon Staging Master Container\To Transaction Transformed Format"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{9B9F0A03-D48A-4E11-98D9-B7727ADF8077}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="To Transaction Transformed Format"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>02_ST_CDR_To_Transaction_Transform_Format.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Nuon Staging Master Container\To Transaction Transformed Location"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{EA7546E0-C1E6-4506-B337-67E97B5AFD5B}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="To Transaction Transformed Location"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>03_ST_Transaction_Transform_Location.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Nuon Staging Master Container\Truncate Staging Tables"
+          DTS:CreationName="SSIS.ExecutePackageTask.3"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{65C2917C-84BC-45E8-B12D-EA5F59226178}"
+          DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Staging Tables"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>00_Truncate_ST_TBL_Transformation.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>ParentExecutionInstanceGUIDToPass</ParameterName>
+                <BindedVariableOrParameterName>System::ExecutionInstanceGUID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Nuon Staging Master Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{D22EECAC-AE76-4EF4-AC66-AA13E415E72A}"
+          DTS:From="Package\Nuon Staging Master Container\Truncate Staging Tables"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Nuon Staging Master Container\Sequence Container" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Nuon Staging Master Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{5DCB1666-5525-489D-BFB7-46B01D23F73B}"
+          DTS:From="Package\Nuon Staging Master Container\Log Package Start"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Nuon Staging Master Container\Truncate Staging Tables" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Nuon Staging Master Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{BA34D445-4DC2-48BD-AE80-53F4A10C32CD}"
+          DTS:From="Package\Nuon Staging Master Container\Sequence Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Nuon Staging Master Container\To Transaction Transformed Format" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Nuon Staging Master Container.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{919DFF90-70A7-4663-B3A0-6E5371433432}"
+          DTS:From="Package\Nuon Staging Master Container\To Transaction Transformed Format"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Nuon Staging Master Container\To Transaction Transformed Location" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Nuon Staging Master Container\Log Package End"
+          TopLeft="351.333333333333,733.777777777778" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Nuon Staging Master Container\Log Package Start"
+          TopLeft="344,46" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Nuon Staging Master Container\Sequence Container\Import NUON xls"
+          TopLeft="19,16" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Nuon Staging Master Container\Sequence Container\Import Utrecht xls"
+          TopLeft="333,26" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="539,123"
+          Size="539,166"
+          Id="Package\Nuon Staging Master Container\Sequence Container"
+          TopLeft="131,295" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\Nuon Staging Master Container\To Transaction Transformed Format"
+          TopLeft="272,510" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Nuon Staging Master Container\Truncate Staging Tables"
+          TopLeft="333,166" />
+        <EdgeLayout
+          Id="Package\Nuon Staging Master Container.PrecedenceConstraints[Constraint]"
+          TopLeft="429.5,208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-29,87"
+              Start="0,0"
+              End="-29,79.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.5"
+                    Point2="0,43.5"
+                    Point3="-4,43.5" />
+                  <mssgle:LineSegment
+                    End="-25,43.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-25,43.5"
+                    Point2="-29,43.5"
+                    Point3="-29,47.5" />
+                  <mssgle:LineSegment
+                    End="-29,79.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Nuon Staging Master Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="427.75,88">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,78"
+              Start="0,0"
+              End="0,70.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Nuon Staging Master Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="398.5,461">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="255,42"
+          Id="Package\Nuon Staging Master Container\To Transaction Transformed Location"
+          TopLeft="268,593" />
+        <EdgeLayout
+          Id="Package\Nuon Staging Master Container.PrecedenceConstraints[Constraint 3]"
+          TopLeft="396,552">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="876,831"
+          Size="876,874"
+          Id="Package\Nuon Staging Master Container"
+          TopLeft="179,66" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

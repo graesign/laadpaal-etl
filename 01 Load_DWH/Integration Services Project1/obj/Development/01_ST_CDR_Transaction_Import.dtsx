@@ -1,0 +1,1962 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/7/2015 11:21:31 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODENHOVEN-PC"
+  DTS:CreatorName="ODENHOVEN-PC\Peter"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{2187AD5F-B38D-44AB-8BBB-FFCBD2D91C2D}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3436.0"
+  DTS:LocaleID="1043"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="01_ST_CDR_Transaction_Import"
+  DTS:VersionBuild="92"
+  DTS:VersionGUID="{B8660FD7-3936-4FDD-B3EB-FF1017118112}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1E200D54-79E7-426C-8CF5-5DC123841686}"
+      DTS:ObjectName="chief-dt.hva.nl.CHIEF_STAGING.POdenhoven">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=chief-dt.hva.nl;User ID=POdenhoven;Initial Catalog=CHIEF_STAGING;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA9Ls4LhfoQ0eiKkUQeFyaPgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAyltexK6aVAfDdqdWHns2Vhw+jPw8Fudcic3VUIgOX0QAAAAAOgAAAAAIAACAAAADMYBgPadv6jvnOP7IplLJvGEsoj+APeluybmUfnTR8UiAAAAAJqhChdsrN7JyVO2lYkpm1qibJ4rAZWZpwMydcGXONG0AAAAAaI9TPS8WBsqfVJnT6+hAYZz7ygCwq2ju6jqOGfG91fqjGPQlKVKAHu5R+Lf/rrQhLlwGw3GS5YZS8w155UUF6</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D2881B3B-68A6-4D72-B08B-73255CB0A800}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODENHOVEN-PC\SQLSERVER;Initial Catalog=CHIEF_STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{9289CDDF-08B0-44B9-96EB-AF8BD9029AAC}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[User::ForEachFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon\ jan 2015.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5F3BC5DB-7457-4B07-9218-A93852D40ED0}"
+      DTS:ObjectName="ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODENHOVEN-PC\SQLSERVER;Initial Catalog=CHIEF_STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionDuplicateMove.xls]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{0129B9B4-0C48-4708-A07D-EDBAD66F7A74}"
+      DTS:ObjectName="SourceConnectionDuplicateMove.xls">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ForEachFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon\ jan 2015.xls" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionExcelDelete]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{81407365-15DC-467E-9571-F741B7FF96BF}"
+      DTS:ObjectName="SourceConnectionExcelDelete">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ForEachFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon\ jan 2015.xls" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionZipMove]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{63DE598D-5F53-4FCC-93B1-2424057AD020}"
+      DTS:ObjectName="SourceConnectionZipMove">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ForEachFileNameArchive]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon\ jan 2015.zip" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7885343D-9C3B-448E-BE71-D8C48E2C5855}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileNameFound">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{69643D90-78AB-4E1E-BAEA-E7B7CADF2888}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ForEachFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon\ jan 2015.xls</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{124FC1DC-E5CD-4C8D-BD17-21279A87375E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="REPLACE( @[User::ForEachFileName] , &quot;xls&quot;,&quot;zip&quot;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ForEachFileNameArchive">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon\ jan 2015.zip</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5F8BBFB1-577D-470F-964D-856EB92118BB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Nuon_File_Path">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E65B6014-52E1-4D1B-97A0-269A84BD6351}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Nuon_File_Path_Archive">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon Archive</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{25472681-9F1C-4E63-8C07-885EDD45392B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Nuon_File_Path_Duplicate">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon Duplicate</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C15FBDC7-C00D-47AD-BBF5-7146080B9EB4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Nuon_File_Pattern">
+      <DTS:VariableValue
+        DTS:DataType="8">*.xls</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8152F5AB-9EEE-476F-98F6-63840D8AC881}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Nuon_File_Sheet">
+      <DTS:VariableValue
+        DTS:DataType="8">public$</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{705EA802-91ED-41B0-8A0B-1533E8117860}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Provider"
+      DTS:ReadOnly="True">
+      <DTS:VariableValue
+        DTS:DataType="8">Nuon</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DC4ABC3C-D44B-467D-B738-989255682211}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Zip_Exe_Path">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\7z.exe</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract all  XLS files"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{49EEB9A7-5324-4CAF-902A-B337435A6B4C}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract all  XLS files">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="DTS.ForEachFileEnumerator.3"
+        DTS:DTSID="{E192A0E3-1D5C-43B9-A81A-932B6C56FE4C}"
+        DTS:ObjectName="{E192A0E3-1D5C-43B9-A81A-932B6C56FE4C}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::Nuon_File_Path]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon\" />
+            <FEFEProperty
+              FileSpec="*.xls" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\Delete Nuon XLS"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{05B00B62-F422-4A75-B763-884D5D718A4E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Delete Nuon XLS"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="DeleteFile"
+              TaskSourcePath="{81407365-15DC-467E-9571-F741B7FF96BF}" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\Import Nuon XLS to Staging"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:DelayValidation="True"
+          DTS:DTSID="{FC495597-FA36-4AD0-9F08-CE35D23658B8}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Import Nuon XLS to Staging"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              defaultBufferSize="3145728"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Destination ST_TBL_Nuon_Transaction_Import"
+                  usesDispositions="true"
+                  validateExternalMetadata="False"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[ST_TBL_Nuon_Transaction_Import]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                      connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[CDR_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="CDR_ID"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[CDR_ID]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[CDR_ID]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Start_datetime]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Start_datetime"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Start_datetime]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Start_datetime]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[End_datetime]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="End_datetime"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[End_datetime]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[End_datetime]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Duration]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Duration"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Duration]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Duration]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Volume]"
+                          cachedDataType="r8"
+                          cachedName="Volume"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Volume]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Volume]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Charge_Point_Address]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Charge_Point_Address"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_Address]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_Address]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Charge_Point_ZIP]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Charge_Point_ZIP"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_ZIP]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_ZIP]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Charge_Point_City]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Charge_Point_City"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_City]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_City]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Charge_Point_Country]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Charge_Point_Country"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_Country]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_Country]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Charge_Point_Type]"
+                          cachedDataType="r8"
+                          cachedName="Charge_Point_Type"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_Type]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_Type]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Product_Type]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Product_Type"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Product_Type]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Product_Type]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Tariff_Type]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Tariff_Type"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Tariff_Type]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Tariff_Type]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Authentication_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Authentication_ID"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Authentication_ID]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Authentication_ID]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Contract_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Contract_ID"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Contract_ID]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Contract_ID]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Meter_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Meter_ID"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Meter_ID]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Meter_ID]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[OBIS_Code]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="OBIS_Code"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[OBIS_Code]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[OBIS_Code]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Charge_Point_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Charge_Point_ID"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_ID]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_ID]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Service_Provider_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Service_Provider_ID"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Service_Provider_ID]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Service_Provider_ID]" />
+                        <inputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].Columns[Infra_Provider_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Infra_Provider_ID"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Infra_Provider_ID]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Infra_Provider_ID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[CDR_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="CDR_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Start_datetime]"
+                          dataType="wstr"
+                          length="255"
+                          name="Start_datetime" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[End_datetime]"
+                          dataType="wstr"
+                          length="255"
+                          name="End_datetime" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Duration]"
+                          dataType="wstr"
+                          length="255"
+                          name="Duration" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Volume]"
+                          dataType="r8"
+                          name="Volume" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_Address]"
+                          dataType="wstr"
+                          length="255"
+                          name="Charge_Point_Address" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_ZIP]"
+                          dataType="wstr"
+                          length="255"
+                          name="Charge_Point_ZIP" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_City]"
+                          dataType="wstr"
+                          length="255"
+                          name="Charge_Point_City" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_Country]"
+                          dataType="wstr"
+                          length="255"
+                          name="Charge_Point_Country" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_Type]"
+                          dataType="r8"
+                          name="Charge_Point_Type" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Product_Type]"
+                          dataType="wstr"
+                          length="255"
+                          name="Product_Type" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Tariff_Type]"
+                          dataType="wstr"
+                          length="255"
+                          name="Tariff_Type" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Authentication_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Authentication_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Contract_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Contract_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Meter_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Meter_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[OBIS_Code]"
+                          dataType="wstr"
+                          length="255"
+                          name="OBIS_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Charge_Point_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Charge_Point_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Service_Provider_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Service_Provider_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[Infra_Provider_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Infra_Provider_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                          dataType="wstr"
+                          length="255"
+                          name="ExecutionInstanceGUID" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction"
+                  componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Source Nuon Transaction"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">public$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[CDR_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[CDR_ID]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[CDR_ID]"
+                          name="CDR_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Start_datetime]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Start_datetime]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Start_datetime]"
+                          name="Start_datetime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[End_datetime]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[End_datetime]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[End_datetime]"
+                          name="End_datetime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Duration]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Duration]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Duration]"
+                          name="Duration"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Volume]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Volume]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Volume]"
+                          name="Volume"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_Address]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_Address]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_Address]"
+                          name="Charge_Point_Address"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_ZIP]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_ZIP]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_ZIP]"
+                          name="Charge_Point_ZIP"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_City]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_City]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_City]"
+                          name="Charge_Point_City"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_Country]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_Country]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_Country]"
+                          name="Charge_Point_Country"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_Type]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_Type]"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_Type]"
+                          name="Charge_Point_Type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Product_Type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Product_Type]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Product_Type]"
+                          name="Product_Type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Tariff_Type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Tariff_Type]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Tariff_Type]"
+                          name="Tariff_Type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Authentication_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Authentication_ID]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Authentication_ID]"
+                          name="Authentication_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Contract_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Contract_ID]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Contract_ID]"
+                          name="Contract_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Meter_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Meter_ID]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Meter_ID]"
+                          name="Meter_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[OBIS_Code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[OBIS_Code]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[OBIS_Code]"
+                          name="OBIS_Code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_ID]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Charge_Point_ID]"
+                          name="Charge_Point_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Service_Provider_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Service_Provider_ID]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Service_Provider_ID]"
+                          name="Service_Provider_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Infra_Provider_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Infra_Provider_ID]"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].Columns[Infra_Provider_ID]"
+                          name="Infra_Provider_ID"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[CDR_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="CDR_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Start_datetime]"
+                          dataType="wstr"
+                          length="255"
+                          name="Start_datetime" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[End_datetime]"
+                          dataType="wstr"
+                          length="255"
+                          name="End_datetime" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Duration]"
+                          dataType="wstr"
+                          length="255"
+                          name="Duration" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Volume]"
+                          dataType="r8"
+                          name="Volume" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_Address]"
+                          dataType="wstr"
+                          length="255"
+                          name="Charge_Point_Address" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_ZIP]"
+                          dataType="wstr"
+                          length="255"
+                          name="Charge_Point_ZIP" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_City]"
+                          dataType="wstr"
+                          length="255"
+                          name="Charge_Point_City" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_Country]"
+                          dataType="wstr"
+                          length="255"
+                          name="Charge_Point_Country" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_Type]"
+                          dataType="r8"
+                          name="Charge_Point_Type" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Product_Type]"
+                          dataType="wstr"
+                          length="255"
+                          name="Product_Type" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Tariff_Type]"
+                          dataType="wstr"
+                          length="255"
+                          name="Tariff_Type" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Authentication_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Authentication_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Contract_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Contract_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Meter_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Meter_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[OBIS_Code]"
+                          dataType="wstr"
+                          length="255"
+                          name="OBIS_Code" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Charge_Point_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Charge_Point_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Service_Provider_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Service_Provider_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output].ExternalColumns[Infra_Provider_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="Infra_Provider_ID" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[CDR_ID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[CDR_ID]"
+                          name="CDR_ID" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Start_datetime]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Start_datetime]"
+                          name="Start_datetime" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[End_datetime]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[End_datetime]"
+                          name="End_datetime" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Duration]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Duration]"
+                          name="Duration" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Volume]"
+                          dataType="r8"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Volume]"
+                          name="Volume" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_Address]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_Address]"
+                          name="Charge_Point_Address" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_ZIP]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_ZIP]"
+                          name="Charge_Point_ZIP" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_City]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_City]"
+                          name="Charge_Point_City" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_Country]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_Country]"
+                          name="Charge_Point_Country" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_Type]"
+                          dataType="r8"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_Type]"
+                          name="Charge_Point_Type" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Product_Type]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Product_Type]"
+                          name="Product_Type" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Tariff_Type]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Tariff_Type]"
+                          name="Tariff_Type" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Authentication_ID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Authentication_ID]"
+                          name="Authentication_ID" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Contract_ID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Contract_ID]"
+                          name="Contract_ID" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Meter_ID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Meter_ID]"
+                          name="Meter_ID" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[OBIS_Code]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[OBIS_Code]"
+                          name="OBIS_Code" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_ID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Charge_Point_ID]"
+                          name="Charge_Point_ID" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Service_Provider_ID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Service_Provider_ID]"
+                          name="Service_Provider_ID" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Infra_Provider_ID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[Infra_Provider_ID]"
+                          name="Infra_Provider_ID" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="toevoegen ExecutionInstanceGUID"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Outputs[Derived Column Output].Columns[executionInstanceGUID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="38"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Outputs[Derived Column Output].Columns[executionInstanceGUID]"
+                          name="executionInstanceGUID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[System::ExecutionInstanceGUID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[System::ExecutionInstanceGUID]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Extract all  XLS files\Import Nuon XLS to Staging.Paths[Derived Column Output]"
+                  endId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import.Inputs[Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Extract all  XLS files\Import Nuon XLS to Staging.Paths[Excel Source Output]"
+                  endId="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\INSERT Nuon FileName"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5C5255A1-7574-42E9-92C0-CFF7848F403F}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="INSERT Nuon FileName"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D2881B3B-68A6-4D72-B08B-73255CB0A800}"
+              SQLTask:SqlStatementSource="INSERT INTO ST_Log_ExtractedFile  &#xA;(Filename,Provider,ExtractionDate,ExecutionInstanceGUID) &#xA;VALUES (?,?, GETDATE(),?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ForEachFileName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::Provider"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\Lookup FileName in ST_LOG_ExtractedFile"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F9FDFABA-EDD5-46B9-B41D-EE55E413CC37}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Lookup FileName in ST_LOG_ExtractedFile"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D2881B3B-68A6-4D72-B08B-73255CB0A800}"
+              SQLTask:SqlStatementSource="DECLARE @FileNameFound int&#xA;&#xA;SELECT @FileNameFound = &#xA; CASE &#xA;     WHEN EXISTS(SELECT [FileName] &#xA;       FROM [dbo].[ST_LOG_ExtractedFile]&#xA;       WHERE lTrim(rTrim([FileName])) = lTrim(rTrim(?))) &#xA;   THEN 1&#xA;   ELSE 0&#xA; END;&#xA;&#xA;SELECT  ? = @FileNameFound&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ForEachFileName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::FileNameFound"
+                SQLTask:ParameterDirection="Output"
+                SQLTask:DataType="2"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\Move Nuon XLS"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{25C624B2-9249-4002-A23C-DCED06120886}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Move Nuon XLS"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="{63DE598D-5F53-4FCC-93B1-2424057AD020}"
+              TaskDestinationPath="User::Nuon_File_Path_Archive"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\Move Nuon XLS Duplicate"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="File System Task"
+          DTS:DTSID="{3FAA10C7-C63F-4C45-B61C-F64203ECAFBD}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Move Nuon XLS Duplicate"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOperationType="MoveFile"
+              TaskSourcePath="{0129B9B4-0C48-4708-A07D-EDBAD66F7A74}"
+              TaskDestinationPath="User::Nuon_File_Path_Duplicate"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\Write File Already exists error"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{75121785-0217-47D7-804B-324354475E47}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Write File Already exists error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D2881B3B-68A6-4D72-B08B-73255CB0A800}"
+              SQLTask:SqlStatementSource="INSERT INTO [ST_LOG_Error]&#xA;           ([errormessage],&#xA;&#x9;filename,&#xA;&#x9;[date],&#xA;&#x9;ExecutionInstanceGUID)&#xA;     VALUES&#xA;           ('File Already extracted',?,GETDATE(),?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::ForEachFileName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Extract all  XLS files\Zip Nuon File"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{E344D83F-132B-4195-BEC4-15EBFA24E0CF}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteProcess.ExecuteProcess, Microsoft.SqlServer.ExecProcTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Zip Nuon File"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">"a -tzip \""+ @[User::ForEachFileNameArchive]  + "\"   \""  + @[User::ForEachFileName]   +"\""</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Executable">@[User::Zip_Exe_Path]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\7z.exe"
+              Arguments="a -tzip &quot;C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon\ jan 2015.zip&quot;   &quot;C:\Mijn Documenten\40 VS CHIEF\00 E-RAW\Nuon\ jan 2015.xls&quot;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{B4494C15-B667-4B0D-9A9C-804A71E04BBD}"
+          DTS:From="Package\Extract all  XLS files\Import Nuon XLS to Staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Extract all  XLS files\Zip Nuon File" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{7E3FDB92-59CF-44BE-AB1A-FAC61FDABF0E}"
+          DTS:From="Package\Extract all  XLS files\Zip Nuon File"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Extract all  XLS files\Delete Nuon XLS" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{4F00346F-7703-4635-BE21-2E7E69FFB10A}"
+          DTS:From="Package\Extract all  XLS files\Zip Nuon File"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Extract all  XLS files\Move Nuon XLS" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{E104A897-1AE0-457E-8DFC-C0A481453081}"
+          DTS:From="Package\Extract all  XLS files\Import Nuon XLS to Staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Extract all  XLS files\INSERT Nuon FileName" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{FFF2B572-5CCB-4674-8F4F-FF09D519717C}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::FileNameFound]==0"
+          DTS:From="Package\Extract all  XLS files\Lookup FileName in ST_LOG_ExtractedFile"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Extract all  XLS files\Import Nuon XLS to Staging" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{99312801-5524-43B1-9B02-92B394956275}"
+          DTS:From="Package\Extract all  XLS files\Write File Already exists error"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Extract all  XLS files\Move Nuon XLS Duplicate" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{3A0F1CF9-2A7A-464D-84E6-6831B6800913}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::FileNameFound]==1"
+          DTS:From="Package\Extract all  XLS files\Lookup FileName in ST_LOG_ExtractedFile"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Extract all  XLS files\Write File Already exists error" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{78DBFECE-81AF-486C-93A5-4457B1D7E560}"
+          DTS:ObjectName="{78DBFECE-81AF-486C-93A5-4457B1D7E560}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::ForEachFileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Log Package Start"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{ae4676b5-eef8-4dce-b954-2a23737a1868}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log Package Start"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1E200D54-79E7-426C-8CF5-5DC123841686}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ST_LOG_PackageRun]&#xA;           ([ExecutionInstanceGUID]&#xA;           ,[PackageID]&#xA;           ,[PackageName]&#xA;           ,[MachineName]&#xA;           ,[UserName]&#xA;           ,[IsParent]&#xA;           ,[StartTime])&#xA;     VALUES&#xA;           (?,?,?,?,?,0,GETDATE())&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="72"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="System::MachineName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="System::UserName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate ST_CDR_Transaction_Import"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:DTSID="{B6E21D3F-18E4-4E3F-9C6B-690DC85C7AC1}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate ST_CDR_Transaction_Import"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1E200D54-79E7-426C-8CF5-5DC123841686}"
+          SQLTask:SqlStatementSource="Truncate table [dbo].[ST_TBL_Import_CDR_Transaction]&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{84AA6E92-3F93-41BC-ABCF-FBE7D7AD217A}"
+      DTS:From="Package\Truncate ST_CDR_Transaction_Import"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract all  XLS files" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7B61F255-EC23-43C0-8782-F492EAC87EF4}"
+      DTS:From="Package\Log Package Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Truncate ST_CDR_Transaction_Import" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Extract all  XLS files\Delete Nuon XLS"
+          TopLeft="515.25,289.25" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\Extract all  XLS files\Import Nuon XLS to Staging"
+          TopLeft="289.75,117" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Extract all  XLS files\INSERT Nuon FileName"
+          TopLeft="656.5,163" />
+        <NodeLayout
+          Size="341,42"
+          Id="Package\Extract all  XLS files\Lookup FileName in ST_LOG_ExtractedFile"
+          TopLeft="65,27" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Extract all  XLS files\Move Nuon XLS"
+          TopLeft="298,291" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Extract all  XLS files\Move Nuon XLS Duplicate"
+          TopLeft="123,198" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Extract all  XLS files\Write File Already exists error"
+          TopLeft="35,111" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Extract all  XLS files\Zip Nuon File"
+          TopLeft="408.75,204.25" />
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint]"
+          TopLeft="395.25,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="84.0000000000001,45.2499999999999"
+              Start="0,0"
+              End="84.0000000000001,37.7499999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.625"
+                    Point2="0,22.625"
+                    Point3="4,22.625" />
+                  <mssgle:LineSegment
+                    End="80.0000000000001,22.625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="80.0000000000001,22.625"
+                    Point2="84.0000000000001,22.625"
+                    Point3="84.0000000000001,26.625" />
+                  <mssgle:LineSegment
+                    End="84.0000000000001,37.7499999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 1]"
+          TopLeft="479.25,246.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="115,43"
+              Start="0,0"
+              End="115,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="4,21.5" />
+                  <mssgle:LineSegment
+                    End="111,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="111,21.5"
+                    Point2="115,21.5"
+                    Point3="115,25.5" />
+                  <mssgle:LineSegment
+                    End="115,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 2]"
+          TopLeft="457.083333333333,246.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-82.5833333333333,44.75"
+              Start="0,0"
+              End="-82.5833333333333,37.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.2012622720898" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.2012622720898"
+                    Point2="0,18.2012622720898"
+                    Point3="-4,18.2012622720898" />
+                  <mssgle:LineSegment
+                    End="-78.5833333333333,18.2012622720898" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-78.5833333333333,18.2012622720898"
+                    Point2="-82.5833333333333,18.2012622720898"
+                    Point3="-82.5833333333333,22.2012622720898" />
+                  <mssgle:LineSegment
+                    End="-82.5833333333333,37.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 3]"
+          TopLeft="500.75,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="155.75,46"
+              Start="0,0"
+              End="148.25,46">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="73.875,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73.875,0"
+                    Point2="77.875,0"
+                    Point3="77.875,4" />
+                  <mssgle:LineSegment
+                    End="77.875,42" />
+                  <mssgle:CubicBezierSegment
+                    Point1="77.875,42"
+                    Point2="77.875,46"
+                    Point3="81.875,46" />
+                  <mssgle:LineSegment
+                    End="148.25,46" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 4]"
+          TopLeft="235.5,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="159.75,48"
+              Start="0,0"
+              End="159.75,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="4,24" />
+                  <mssgle:LineSegment
+                    End="155.75,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="155.75,24"
+                    Point2="159.75,24"
+                    Point3="159.75,28" />
+                  <mssgle:LineSegment
+                    End="159.75,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="71.875,29,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 5]"
+          TopLeft="144,153">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79,45"
+              Start="0,0"
+              End="79,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="4,22.5" />
+                  <mssgle:LineSegment
+                    End="75,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="75,22.5"
+                    Point2="79,22.5"
+                    Point3="79,26.5" />
+                  <mssgle:LineSegment
+                    End="79,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files.PrecedenceConstraints[Constraint 6]"
+          TopLeft="180,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-36,42"
+              Start="0,0"
+              End="-36,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.9176882661997" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.9176882661997"
+                    Point2="0,16.9176882661997"
+                    Point3="-4,16.9176882661997" />
+                  <mssgle:LineSegment
+                    End="-32,16.9176882661997" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-32,16.9176882661997"
+                    Point2="-36,16.9176882661997"
+                    Point3="-36,20.9176882661997" />
+                  <mssgle:LineSegment
+                    End="-36,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-26,21.9176882661997,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="852,388"
+          Size="852,431"
+          Id="Package\Extract all  XLS files"
+          TopLeft="193.5,149.083333333333" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Log Package Start"
+          TopLeft="134,5" />
+        <NodeLayout
+          Size="261,42"
+          Id="Package\Truncate ST_CDR_Transaction_Import"
+          TopLeft="374.75,74.25" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="505.25,116.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="114.25,32.833333333333"
+              Start="0,0"
+              End="114.25,25.333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.4166666666665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.4166666666665"
+                    Point2="0,16.4166666666665"
+                    Point3="4,16.4166666666665" />
+                  <mssgle:LineSegment
+                    End="110.25,16.4166666666665" />
+                  <mssgle:CubicBezierSegment
+                    Point1="110.25,16.4166666666665"
+                    Point2="114.25,16.4166666666665"
+                    Point3="114.25,20.4166666666665" />
+                  <mssgle:LineSegment
+                    End="114.25,25.333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="216,47">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="289.25,27.25"
+              Start="0,0"
+              End="289.25,19.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.625"
+                    Point2="0,13.625"
+                    Point3="4,13.625" />
+                  <mssgle:LineSegment
+                    End="285.25,13.625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="285.25,13.625"
+                    Point2="289.25,13.625"
+                    Point3="289.25,17.625" />
+                  <mssgle:LineSegment
+                    End="289.25,19.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract all  XLS files\Import Nuon XLS to Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Extract all  XLS files\Import Nuon XLS to Staging\toevoegen ExecutionInstanceGUID"
+          TopLeft="197,135" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction"
+          TopLeft="62,40" />
+        <NodeLayout
+          Size="300,42"
+          Id="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import"
+          TopLeft="375.5,241.5" />
+        <EdgeLayout
+          Id="Package\Extract all  XLS files\Import Nuon XLS to Staging.Paths[Excel Source Output]"
+          TopLeft="160.5,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="158,53"
+              Start="0,0"
+              End="158,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.5"
+                    Point2="0,26.5"
+                    Point3="4,26.5" />
+                  <mssgle:LineSegment
+                    End="154,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="154,26.5"
+                    Point2="158,26.5"
+                    Point3="158,30.5" />
+                  <mssgle:LineSegment
+                    End="158,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract all  XLS files\Import Nuon XLS to Staging.Paths[Derived Column Output]"
+          TopLeft="318.5,177">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="188,64.5"
+              Start="0,0"
+              End="188,57">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.25"
+                    Point2="0,32.25"
+                    Point3="4,32.25" />
+                  <mssgle:LineSegment
+                    End="184,32.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="184,32.25"
+                    Point2="188,32.25"
+                    Point3="188,36.25" />
+                  <mssgle:LineSegment
+                    End="188,57" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract all  XLS files\Import Nuon XLS to Staging\Source Nuon Transaction">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract all  XLS files\Import Nuon XLS to Staging\Destination ST_TBL_Nuon_Transaction_Import">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

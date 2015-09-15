@@ -1,0 +1,1454 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/7/2015 1:36:01 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODENHOVEN-PC"
+  DTS:CreatorName="ODENHOVEN-PC\Peter"
+  DTS:DTSID="{909351A9-BC60-4908-B233-1527692D63ED}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3436.0"
+  DTS:LocaleID="1043"
+  DTS:ObjectName="02_ST_From_Import_MeterValue_BDR"
+  DTS:PackageType="5"
+  DTS:VersionBuild="114"
+  DTS:VersionGUID="{D9965D37-8C8B-4028-B4B1-56C082E7A589}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A6DAC147-E257-4731-9C86-19B25C20EFE7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="MasterExecutionInstanceGUID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EB4ED062-50CA-4BD8-994A-3ADF42B03F7D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Provider">
+      <DTS:VariableValue
+        DTS:DataType="8">'Nuon'</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\FROM IMPORT_METERVALUE_BDR"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{EE811FF8-CD47-4D54-9390-1AC410F10199}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FROM IMPORT_METERVALUE_BDR"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="FORMATS"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input].Columns[Verbindung Dat Beg]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Verbindung Dat Beg"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Dat Beg]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input].Columns[Verbindung Zeit Beg]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Verbindung Zeit Beg"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Zeit Beg]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input].Columns[Unique ID RFID/GUT]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Unique ID RFID/GUT"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Unique ID RFID/GUT]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input].Columns[LP-Nummer aus IAM]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LP-Nummer aus IAM"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[LP-Nummer aus IAM]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input].Columns[Zählernummer]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Zählernummer"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Zählernummer]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input].Columns[Anfang ZST (kWh)]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Anfang ZST (kWh)"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Anfang ZST (kWh)]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input].Columns[Item index]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Item index"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Item index]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Charge_Point_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Charge_Point_ID]"
+                      name="Charge_Point_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[LP-Nummer aus IAM]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">[LP-Nummer aus IAM]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Socket]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Socket]"
+                      name="Socket"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Zählernummer]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">[Zählernummer]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[RFID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[RFID]"
+                      name="RFID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Unique ID RFID/GUT]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">[Unique ID RFID/GUT]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[kWh]"
+                      dataType="decimal"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[kWh]"
+                      name="kWh"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DECIMAL,5)#{Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Anfang ZST (kWh)]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DECIMAL,5)[Anfang ZST (kWh)]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Timestamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Timestamp]"
+                      name="Timestamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)([RIGHT](#{Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Dat Beg]},4) + "-" + [SUBSTRING](#{Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Dat Beg]},4,2) + "-" + [LEFT](#{Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Dat Beg]},2) + " " + #{Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Zeit Beg]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)(RIGHT([Verbindung Dat Beg],4) + "-" + SUBSTRING([Verbindung Dat Beg],4,2) + "-" + LEFT([Verbindung Dat Beg],2) + " " + [Verbindung Zeit Beg])</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[PartionedRowNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[PartionedRowNumber]"
+                      name="PartionedRowNumber"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Item index]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">[Item index]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Meter_value]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Meter_value]"
+                      name="Meter_value"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Anfang ZST (kWh)]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">[Anfang ZST (kWh)]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="IMPORT METERVALUE BDR  NO SUMMARY ROWS"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ST_TBL_Import_Metervalue_BDR]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT [BDR Schlüssel]
+      ,[Verbindung Dat Beg]
+      ,[Verbindung Zeit Beg]
+      ,[Verbindung Dat Ende]
+      ,[Verbindung Zeit Ende]
+      ,[Status C Dauer]
+      ,[Verbindungsdauer]
+      ,[Contract ID]
+      ,[Unique ID RFID/GUT]
+      ,[Straße]
+      ,[Hausnummer]
+      ,[Postleitzahl]
+      ,[Ort]
+      ,[Land]
+      ,[LP-Nummer aus IAM]
+      ,[Eigentümer]
+      ,[Eigentümername]
+      ,[Zählernummer]
+      ,[Anfang ZST (kWh)]
+      ,[Ende ZST (kWh)]
+      ,[Menge]
+      ,[Anzahl Stützwerte]
+      ,[Merkmal Summenzeile]
+      ,[Item index]
+      ,[Angelegt am]
+      ,[Angelegt um]
+      ,[Angelegt von]
+      ,[Anschlussart]
+      ,[Ladepunkttyp (AC/DC)]
+      ,[Art der Authentifiz#]
+      ,[ExecutionInstanceGUID]
+  FROM [CHIEF_STAGING].[dbo].[ST_TBL_Import_Metervalue_BDR]   where NOT [Unique ID RFID/GUT] ='' and NOT [Item index]='0'</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Connections[OleDbConnection]"
+                  connectionManagerID="{660CD9D8-96E4-40AA-A9A5-7196B361825E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[BDR Schlüssel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[BDR Schlüssel]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[BDR Schlüssel]"
+                      name="BDR Schlüssel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Dat Beg]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Verbindung Dat Beg]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Dat Beg]"
+                      name="Verbindung Dat Beg"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Zeit Beg]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Verbindung Zeit Beg]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Zeit Beg]"
+                      name="Verbindung Zeit Beg"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Dat Ende]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Verbindung Dat Ende]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Dat Ende]"
+                      name="Verbindung Dat Ende"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Zeit Ende]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Verbindung Zeit Ende]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindung Zeit Ende]"
+                      name="Verbindung Zeit Ende"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Status C Dauer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Status C Dauer]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Status C Dauer]"
+                      name="Status C Dauer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindungsdauer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Verbindungsdauer]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Verbindungsdauer]"
+                      name="Verbindungsdauer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Contract ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Contract ID]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Contract ID]"
+                      name="Contract ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Unique ID RFID/GUT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Unique ID RFID/GUT]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Unique ID RFID/GUT]"
+                      name="Unique ID RFID/GUT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Straße]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Straße]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Straße]"
+                      name="Straße"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Hausnummer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Hausnummer]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Hausnummer]"
+                      name="Hausnummer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Postleitzahl]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Postleitzahl]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Postleitzahl]"
+                      name="Postleitzahl"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Ort]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Ort]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Ort]"
+                      name="Ort"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Land]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Land]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Land]"
+                      name="Land"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[LP-Nummer aus IAM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[LP-Nummer aus IAM]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[LP-Nummer aus IAM]"
+                      name="LP-Nummer aus IAM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Eigentümer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Eigentümer]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Eigentümer]"
+                      name="Eigentümer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Eigentümername]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Eigentümername]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Eigentümername]"
+                      name="Eigentümername"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Zählernummer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Zählernummer]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Zählernummer]"
+                      name="Zählernummer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Anfang ZST (kWh)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Anfang ZST (kWh)]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Anfang ZST (kWh)]"
+                      name="Anfang ZST (kWh)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Ende ZST (kWh)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Ende ZST (kWh)]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Ende ZST (kWh)]"
+                      name="Ende ZST (kWh)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Menge]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Menge]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Menge]"
+                      name="Menge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Anzahl Stützwerte]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Anzahl Stützwerte]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Anzahl Stützwerte]"
+                      name="Anzahl Stützwerte"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Merkmal Summenzeile]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Merkmal Summenzeile]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Merkmal Summenzeile]"
+                      name="Merkmal Summenzeile"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Item index]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Item index]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Item index]"
+                      name="Item index"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Angelegt am]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Angelegt am]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Angelegt am]"
+                      name="Angelegt am"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Angelegt um]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Angelegt um]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Angelegt um]"
+                      name="Angelegt um"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Angelegt von]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Angelegt von]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Angelegt von]"
+                      name="Angelegt von"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Anschlussart]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Anschlussart]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Anschlussart]"
+                      name="Anschlussart"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Ladepunkttyp (AC/DC)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Ladepunkttyp (AC/DC)]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Ladepunkttyp (AC/DC)]"
+                      name="Ladepunkttyp (AC/DC)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Art der Authentifiz#]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Art der Authentifiz#]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[Art der Authentifiz#]"
+                      name="Art der Authentifiz#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[ExecutionInstanceGUID]"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]"
+                      name="ExecutionInstanceGUID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[BDR Schlüssel]"
+                      dataType="wstr"
+                      length="50"
+                      name="BDR Schlüssel" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Verbindung Dat Beg]"
+                      dataType="wstr"
+                      length="50"
+                      name="Verbindung Dat Beg" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Verbindung Zeit Beg]"
+                      dataType="wstr"
+                      length="50"
+                      name="Verbindung Zeit Beg" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Verbindung Dat Ende]"
+                      dataType="wstr"
+                      length="50"
+                      name="Verbindung Dat Ende" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Verbindung Zeit Ende]"
+                      dataType="wstr"
+                      length="50"
+                      name="Verbindung Zeit Ende" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Status C Dauer]"
+                      dataType="wstr"
+                      length="50"
+                      name="Status C Dauer" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Verbindungsdauer]"
+                      dataType="wstr"
+                      length="50"
+                      name="Verbindungsdauer" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Contract ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Contract ID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Unique ID RFID/GUT]"
+                      dataType="wstr"
+                      length="50"
+                      name="Unique ID RFID/GUT" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Straße]"
+                      dataType="wstr"
+                      length="50"
+                      name="Straße" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Hausnummer]"
+                      dataType="wstr"
+                      length="50"
+                      name="Hausnummer" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Postleitzahl]"
+                      dataType="wstr"
+                      length="50"
+                      name="Postleitzahl" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Ort]"
+                      dataType="wstr"
+                      length="50"
+                      name="Ort" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Land]"
+                      dataType="wstr"
+                      length="50"
+                      name="Land" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[LP-Nummer aus IAM]"
+                      dataType="wstr"
+                      length="50"
+                      name="LP-Nummer aus IAM" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Eigentümer]"
+                      dataType="wstr"
+                      length="50"
+                      name="Eigentümer" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Eigentümername]"
+                      dataType="wstr"
+                      length="50"
+                      name="Eigentümername" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Zählernummer]"
+                      dataType="wstr"
+                      length="50"
+                      name="Zählernummer" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Anfang ZST (kWh)]"
+                      dataType="wstr"
+                      length="50"
+                      name="Anfang ZST (kWh)" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Ende ZST (kWh)]"
+                      dataType="wstr"
+                      length="50"
+                      name="Ende ZST (kWh)" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Menge]"
+                      dataType="wstr"
+                      length="50"
+                      name="Menge" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Anzahl Stützwerte]"
+                      dataType="wstr"
+                      length="50"
+                      name="Anzahl Stützwerte" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Merkmal Summenzeile]"
+                      dataType="wstr"
+                      length="50"
+                      name="Merkmal Summenzeile" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Item index]"
+                      dataType="wstr"
+                      length="50"
+                      name="Item index" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Angelegt am]"
+                      dataType="wstr"
+                      length="50"
+                      name="Angelegt am" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Angelegt um]"
+                      dataType="wstr"
+                      length="50"
+                      name="Angelegt um" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Angelegt von]"
+                      dataType="wstr"
+                      length="50"
+                      name="Angelegt von" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Anschlussart]"
+                      dataType="wstr"
+                      length="50"
+                      name="Anschlussart" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Ladepunkttyp (AC/DC)]"
+                      dataType="wstr"
+                      length="50"
+                      name="Ladepunkttyp (AC/DC)" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[Art der Authentifiz#]"
+                      dataType="wstr"
+                      length="50"
+                      name="Art der Authentifiz#" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].ExternalColumns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      length="50"
+                      name="ExecutionInstanceGUID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[BDR Schlüssel]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[BDR Schlüssel]"
+                      name="BDR Schlüssel" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Verbindung Dat Beg]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Verbindung Dat Beg]"
+                      name="Verbindung Dat Beg" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Verbindung Zeit Beg]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Verbindung Zeit Beg]"
+                      name="Verbindung Zeit Beg" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Verbindung Dat Ende]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Verbindung Dat Ende]"
+                      name="Verbindung Dat Ende" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Verbindung Zeit Ende]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Verbindung Zeit Ende]"
+                      name="Verbindung Zeit Ende" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Status C Dauer]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Status C Dauer]"
+                      name="Status C Dauer" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Verbindungsdauer]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Verbindungsdauer]"
+                      name="Verbindungsdauer" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Contract ID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Contract ID]"
+                      name="Contract ID" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Unique ID RFID/GUT]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Unique ID RFID/GUT]"
+                      name="Unique ID RFID/GUT" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Straße]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Straße]"
+                      name="Straße" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Hausnummer]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Hausnummer]"
+                      name="Hausnummer" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Postleitzahl]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Postleitzahl]"
+                      name="Postleitzahl" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Ort]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Ort]"
+                      name="Ort" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Land]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Land]"
+                      name="Land" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[LP-Nummer aus IAM]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[LP-Nummer aus IAM]"
+                      name="LP-Nummer aus IAM" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Eigentümer]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Eigentümer]"
+                      name="Eigentümer" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Eigentümername]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Eigentümername]"
+                      name="Eigentümername" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Zählernummer]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Zählernummer]"
+                      name="Zählernummer" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Anfang ZST (kWh)]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Anfang ZST (kWh)]"
+                      name="Anfang ZST (kWh)" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Ende ZST (kWh)]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Ende ZST (kWh)]"
+                      name="Ende ZST (kWh)" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Menge]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Menge]"
+                      name="Menge" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Anzahl Stützwerte]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Anzahl Stützwerte]"
+                      name="Anzahl Stützwerte" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Merkmal Summenzeile]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Merkmal Summenzeile]"
+                      name="Merkmal Summenzeile" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Item index]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Item index]"
+                      name="Item index" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Angelegt am]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Angelegt am]"
+                      name="Angelegt am" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Angelegt um]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Angelegt um]"
+                      name="Angelegt um" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Angelegt von]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Angelegt von]"
+                      name="Angelegt von" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Anschlussart]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Anschlussart]"
+                      name="Anschlussart" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Ladepunkttyp (AC/DC)]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Ladepunkttyp (AC/DC)]"
+                      name="Ladepunkttyp (AC/DC)" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Art der Authentifiz#]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[Art der Authentifiz#]"
+                      name="Art der Authentifiz#" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[ExecutionInstanceGUID]"
+                      name="ExecutionInstanceGUID" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="INTERMEDIATE METERVALUE"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ST_TBL_Intermediate_Metervalue]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Connections[OleDbConnection]"
+                  connectionManagerID="{660CD9D8-96E4-40AA-A9A5-7196B361825E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].Columns[ExecutionInstanceGUID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ExecutionInstanceGUID"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].Columns[Charge_Point_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Charge_Point_ID"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Charge_Point_ID]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].Columns[Socket]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Socket"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[Socket]"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Socket]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].Columns[RFID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="RFID"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[RFID]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].Columns[Timestamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Timestamp"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Timestamp]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].Columns[PartionedRowNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="PartionedRowNumber"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[PartionedRowNumber]"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[PartionedRowNumber]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].Columns[Meter_value]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Meter_value"
+                      externalMetadataColumnId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[Meter_value]"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output].Columns[Meter_value]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[Transaction_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Transaction_ID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Charge_Point_ID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[Socket]"
+                      dataType="wstr"
+                      length="50"
+                      name="Socket" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      dataType="wstr"
+                      length="50"
+                      name="RFID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[InternationalName]"
+                      dataType="wstr"
+                      length="255"
+                      name="InternationalName" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[TimeStamp]"
+                      dataType="wstr"
+                      length="255"
+                      name="TimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      length="255"
+                      name="ExecutionInstanceGUID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[PartionedRowNumber]"
+                      dataType="i4"
+                      name="PartionedRowNumber" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input].ExternalColumns[Meter_value]"
+                      dataType="r8"
+                      name="Meter_value" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\FROM IMPORT_METERVALUE_BDR.Paths[Derived Column Output]"
+              endId="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\FROM IMPORT_METERVALUE_BDR.Paths[OLE DB Source Output]"
+              endId="Package\FROM IMPORT_METERVALUE_BDR\FORMATS.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE INTERMEDIATE METERVALUE"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{661826F3-8AAE-44E4-83BC-7FA90A937549}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE INTERMEDIATE METERVALUE"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{660CD9D8-96E4-40AA-A9A5-7196B361825E}"
+          SQLTask:SqlStatementSource="&#xA;TRUNCATE TABLE [CHIEF_STAGING].[dbo].[ST_TBL_Intermediate_Metervalue];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CCF34B09-8065-44A2-B8F7-F0B6128FA5B3}"
+      DTS:From="Package\TRUNCATE INTERMEDIATE METERVALUE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\FROM IMPORT_METERVALUE_BDR" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="245,42"
+          Id="Package\FROM IMPORT_METERVALUE_BDR"
+          TopLeft="338,119" />
+        <NodeLayout
+          Size="276,42"
+          Id="Package\TRUNCATE INTERMEDIATE METERVALUE"
+          TopLeft="315,25" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="456.75,67">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FROM IMPORT_METERVALUE_BDR">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="315,42"
+          Id="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS"
+          TopLeft="363,81" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\FROM IMPORT_METERVALUE_BDR\FORMATS"
+          TopLeft="458,148" />
+        <NodeLayout
+          Size="220,42"
+          Id="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE"
+          TopLeft="412,242" />
+        <EdgeLayout
+          Id="Package\FROM IMPORT_METERVALUE_BDR.Paths[Derived Column Output]"
+          TopLeft="521.5,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM IMPORT_METERVALUE_BDR.Paths[OLE DB Source Output]"
+          TopLeft="520.75,123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,25"
+              Start="0,0"
+              End="0,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FROM IMPORT_METERVALUE_BDR\IMPORT METERVALUE BDR  NO SUMMARY ROWS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FROM IMPORT_METERVALUE_BDR\INTERMEDIATE METERVALUE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
