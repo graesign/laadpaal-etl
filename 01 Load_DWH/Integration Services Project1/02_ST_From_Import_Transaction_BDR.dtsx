@@ -11,8 +11,8 @@
   DTS:LocaleID="1043"
   DTS:ObjectName="02_ST_From_Import_Transaction_BDR"
   DTS:PackageType="5"
-  DTS:VersionBuild="111"
-  DTS:VersionGUID="{47B2C500-1B75-4B4B-9D1B-32FDD17D4E8E}">
+  DTS:VersionBuild="116"
+  DTS:VersionGUID="{C5B6104D-D07F-4682-BA0F-A847752DD506}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:Variables>
@@ -244,13 +244,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">([LEFT](#{Package\FROM IMPORT_TRANSACTION_BDR\IMPORT_TRANSACTION_BDR.Outputs[OLE DB Source Output].Columns[Postleitzahl]},4) + [RIGHT](#{Package\FROM IMPORT_TRANSACTION_BDR\IMPORT_TRANSACTION_BDR.Outputs[OLE DB Source Output].Columns[Postleitzahl]},2))</property>
+                          name="Expression">([LEFT](#{Package\FROM IMPORT_TRANSACTION_BDR\IMPORT_TRANSACTION_BDR.Outputs[OLE DB Source Output].Columns[Postleitzahl]},4) + [REVERSE]([RIGHT](#{Package\FROM IMPORT_TRANSACTION_BDR\IMPORT_TRANSACTION_BDR.Outputs[OLE DB Source Output].Columns[Postleitzahl]},2)))</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(LEFT(Postleitzahl,4) + RIGHT(Postleitzahl,2))</property>
+                          name="FriendlyExpression">(LEFT(Postleitzahl,4) + REVERSE(RIGHT(Postleitzahl,2)))</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -1563,6 +1563,229 @@
               </outputs>
             </component>
             <component
+              refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LOCATION CORRECTIONS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[ST_LOOKUP_Location_Corrections]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[ST_LOOKUP_Location_Corrections]) [refTable]
+where [refTable].[Imported_Address] = ? and [refTable].[Imported_Postalcode] = ? and [refTable].[Imported_City] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Correction_skey" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Imported_City" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Imported_Address" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Imported_Postalcode" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Corrected_City" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Corrected_Address" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Corrected_Postalcode" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Outputs[Derived Column Output].Columns[Address]};#{Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Outputs[Derived Column Output].Columns[Postalcode]};#{Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Outputs[Derived Column Output].Columns[City]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Connections[OleDbConnection]"
+                  connectionManagerID="{660CD9D8-96E4-40AA-A9A5-7196B361825E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Inputs[Lookup Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="City"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Outputs[Derived Column Output].Columns[City]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Imported_City</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Inputs[Lookup Input].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="101"
+                      cachedName="Address"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Outputs[Derived Column Output].Columns[Address]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Imported_Address</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Inputs[Lookup Input].Columns[Postalcode]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Postalcode"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Outputs[Derived Column Output].Columns[Postalcode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Imported_Postalcode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output].Columns[Corrected_City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output].Columns[Corrected_City]"
+                      name="Corrected_City"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Corrected_City</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output].Columns[Corrected_Address]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output].Columns[Corrected_Address]"
+                      name="Corrected_Address"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Corrected_Address</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output].Columns[Corrected_Postalcode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="6"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output].Columns[Corrected_Postalcode]"
+                      name="Corrected_Postalcode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Corrected_Postalcode</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\FROM IMPORT_TRANSACTION_BDR\Multicast"
               componentClassID="{EC139FBC-694E-490B-8EA7-35690FB0F445}"
               contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -1591,17 +1814,17 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\FROM IMPORT_TRANSACTION_BDR\Multicast.Outputs[Multicast Output 3]"
+                  refId="Package\FROM IMPORT_TRANSACTION_BDR\Multicast.Outputs[Multicast Output 4]"
                   deleteOutputOnPathDetached="true"
-                  name="Multicast Output 3"
+                  name="Multicast Output 4"
                   synchronousInputId="Package\FROM IMPORT_TRANSACTION_BDR\Multicast.Inputs[Multicast Input 1]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\FROM IMPORT_TRANSACTION_BDR\Multicast.Outputs[Multicast Output 4]"
+                  refId="Package\FROM IMPORT_TRANSACTION_BDR\Multicast.Outputs[Multicast Output 3]"
                   dangling="true"
                   deleteOutputOnPathDetached="true"
-                  name="Multicast Output 4"
+                  name="Multicast Output 3"
                   synchronousInputId="Package\FROM IMPORT_TRANSACTION_BDR\Multicast.Inputs[Multicast Input 1]">
                   <externalMetadataColumns />
                 </output>
@@ -1882,6 +2105,286 @@
               </outputs>
             </component>
             <component
+              refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PREDWH_CHARGESTATION_CORRECTED"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ST_TBL_PREDWH_Chargepoint]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Connections[OleDbConnection]"
+                  connectionManagerID="{660CD9D8-96E4-40AA-A9A5-7196B361825E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[chief-dt.hva.nl.CHIEF_STAGING.POdenhoven]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].Columns[ExecutionInstanceGUID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ExecutionInstanceGUID"
+                      externalMetadataColumnId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\IMPORT_TRANSACTION_BDR.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Outputs[Derived Column Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].Columns[Charge_Point_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Charge_Point_ID"
+                      externalMetadataColumnId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Outputs[Derived Column Output].Columns[Charge_Point_ID]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].Columns[Socket]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Socket"
+                      externalMetadataColumnId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Socket]"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Outputs[Derived Column Output].Columns[Socket]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].Columns[Provider]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Provider"
+                      externalMetadataColumnId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Provider]"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Outputs[Derived Column Output].Columns[Provider]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].Columns[Corrected_City]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Corrected_City"
+                      externalMetadataColumnId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output].Columns[Corrected_City]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].Columns[Corrected_Address]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Corrected_Address"
+                      externalMetadataColumnId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output].Columns[Corrected_Address]" />
+                    <inputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].Columns[Corrected_Postalcode]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Corrected_Postalcode"
+                      externalMetadataColumnId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output].Columns[Corrected_Postalcode]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Charge_Point_ID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Socket]"
+                      dataType="wstr"
+                      length="50"
+                      name="Socket" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Provider]"
+                      dataType="wstr"
+                      length="50"
+                      name="Provider" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_Type]"
+                      dataType="wstr"
+                      length="50"
+                      name="Charge_Point_Type" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="50"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="50"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Municipality]"
+                      dataType="wstr"
+                      length="50"
+                      name="Municipality" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="50"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="50"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="6"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[AliveTimestamp]"
+                      dataType="dbTimeStamp"
+                      name="AliveTimestamp" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                      dataType="r8"
+                      name="Latitude" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                      dataType="r8"
+                      name="Longitude" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Ean]"
+                      dataType="wstr"
+                      length="50"
+                      name="Ean" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Iccid]"
+                      dataType="wstr"
+                      length="50"
+                      name="Iccid" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Imsi]"
+                      dataType="wstr"
+                      length="50"
+                      name="Imsi" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[InternationalName]"
+                      dataType="wstr"
+                      length="50"
+                      name="InternationalName" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[MeterType]"
+                      dataType="wstr"
+                      length="50"
+                      name="MeterType" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[NetworkProvider]"
+                      dataType="wstr"
+                      length="50"
+                      name="NetworkProvider" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Operator]"
+                      dataType="wstr"
+                      length="50"
+                      name="Operator" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[PublicAccessible]"
+                      dataType="bool"
+                      name="PublicAccessible" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[SerialNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="SerialNumber" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Uid]"
+                      dataType="wstr"
+                      length="50"
+                      name="Uid" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[Vendor]"
+                      dataType="wstr"
+                      length="50"
+                      name="Vendor" />
+                    <externalMetadataColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input].ExternalColumns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      length="255"
+                      name="ExecutionInstanceGUID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_RFID"
               componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -2133,6 +2636,16 @@
               name="Derived Column Output"
               startId="Package\FROM IMPORT_TRANSACTION_BDR\SET STARTCHARGEDATETIME.Outputs[Derived Column Output]" />
             <path
+              refId="Package\FROM IMPORT_TRANSACTION_BDR.Paths[Lookup Match Output]"
+              endId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FROM IMPORT_TRANSACTION_BDR.Paths[Lookup No Match Output]"
+              endId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Outputs[Lookup No Match Output]" />
+            <path
               refId="Package\FROM IMPORT_TRANSACTION_BDR.Paths[Multicast Output 1]"
               endId="Package\FROM IMPORT_TRANSACTION_BDR\INTERMEDIATE_TRANSACTION.Inputs[OLE DB Destination Input]"
               name="Multicast Output 1"
@@ -2143,10 +2656,10 @@
               name="Multicast Output 2"
               startId="Package\FROM IMPORT_TRANSACTION_BDR\Multicast.Outputs[Multicast Output 2]" />
             <path
-              refId="Package\FROM IMPORT_TRANSACTION_BDR.Paths[Multicast Output 3]"
-              endId="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION.Inputs[OLE DB Destination Input]"
-              name="Multicast Output 3"
-              startId="Package\FROM IMPORT_TRANSACTION_BDR\Multicast.Outputs[Multicast Output 3]" />
+              refId="Package\FROM IMPORT_TRANSACTION_BDR.Paths[Multicast Output 4]"
+              endId="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS.Inputs[Lookup Input]"
+              name="Multicast Output 4"
+              startId="Package\FROM IMPORT_TRANSACTION_BDR\Multicast.Outputs[Multicast Output 4]" />
             <path
               refId="Package\FROM IMPORT_TRANSACTION_BDR.Paths[OLE DB Source Output]"
               endId="Package\FROM IMPORT_TRANSACTION_BDR\FORMATS.Inputs[Derived Column Input]"
@@ -2197,13 +2710,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="177,42"
-          Id="Package\TRUNCATE PREDWH"
-          TopLeft="315,25" />
-        <NodeLayout
           Size="251,42"
           Id="Package\FROM IMPORT_TRANSACTION_BDR"
           TopLeft="308,116" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\TRUNCATE PREDWH"
+          TopLeft="315,25" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="403.5,67">
@@ -2245,83 +2758,69 @@
     design-time-name="Package\FROM IMPORT_TRANSACTION_BDR">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="229,42"
           Id="Package\FROM IMPORT_TRANSACTION_BDR\INTERMEDIATE_TRANSACTION"
           TopLeft="0,362" />
         <NodeLayout
-          Size="120,42"
-          Id="Package\FROM IMPORT_TRANSACTION_BDR\Multicast"
-          TopLeft="292,283" />
+          Size="203,42"
+          Id="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS"
+          TopLeft="594,344" />
         <NodeLayout
           Size="219,42"
           Id="Package\FROM IMPORT_TRANSACTION_BDR\IMPORT_TRANSACTION_BDR"
           TopLeft="237,36" />
         <NodeLayout
-          Size="211,42"
-          Id="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION"
-          TopLeft="464,366" />
+          Size="275,42"
+          Id="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED"
+          TopLeft="466,442" />
         <NodeLayout
           Size="151,42"
           Id="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_RFID"
           TopLeft="269,363" />
         <NodeLayout
+          Size="120,42"
+          Id="Package\FROM IMPORT_TRANSACTION_BDR\Multicast"
+          TopLeft="292,283" />
+        <NodeLayout
           Size="126,42"
           Id="Package\FROM IMPORT_TRANSACTION_BDR\FORMATS"
           TopLeft="290,126" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION"
+          TopLeft="822,438" />
         <NodeLayout
           Size="222,42"
           Id="Package\FROM IMPORT_TRANSACTION_BDR\SET STARTCHARGEDATETIME"
           TopLeft="254,205" />
         <EdgeLayout
-          Id="Package\FROM IMPORT_TRANSACTION_BDR.Paths[OLE DB Source Output]"
-          TopLeft="349.75,78">
+          Id="Package\FROM IMPORT_TRANSACTION_BDR.Paths[Multicast Output 4]"
+          TopLeft="412,304">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,48"
+              EndConnector="182,61"
               Start="0,0"
-              End="0,40.5">
+              End="174.5,61">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\FROM IMPORT_TRANSACTION_BDR.Paths[Multicast Output 3]"
-          TopLeft="380,325">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="189.5,41"
-              Start="0,0"
-              End="189.5,33.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,10.2608695652174" />
+                    End="87,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,10.2608695652174"
-                    Point2="0,14.2608695652174"
-                    Point3="4,14.2608695652174" />
+                    Point1="87,0"
+                    Point2="91,0"
+                    Point3="91,4" />
                   <mssgle:LineSegment
-                    End="185.5,14.2608695652174" />
+                    End="91,57" />
                   <mssgle:CubicBezierSegment
-                    Point1="185.5,14.2608695652174"
-                    Point2="189.5,14.2608695652174"
-                    Point3="189.5,18.2608695652174" />
+                    Point1="91,57"
+                    Point2="91,61"
+                    Point3="95,61" />
                   <mssgle:LineSegment
-                    End="189.5,33.5" />
+                    End="174.5,61" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2384,6 +2883,78 @@
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM IMPORT_TRANSACTION_BDR.Paths[Lookup No Match Output]"
+          TopLeft="728,386">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="199.5,52"
+              Start="0,0"
+              End="199.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.0439882697947" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.0439882697947"
+                    Point2="0,21.0439882697947"
+                    Point3="4,21.0439882697947" />
+                  <mssgle:LineSegment
+                    End="195.5,21.0439882697947" />
+                  <mssgle:CubicBezierSegment
+                    Point1="195.5,21.0439882697947"
+                    Point2="199.5,21.0439882697947"
+                    Point3="199.5,25.0439882697947" />
+                  <mssgle:LineSegment
+                    End="199.5,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="43.94361328125,26.0439882697947,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM IMPORT_TRANSACTION_BDR.Paths[Lookup Match Output]"
+          TopLeft="663,386">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-59.5,56"
+              Start="0,0"
+              End="-59.5,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.6627565982405" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.6627565982405"
+                    Point2="0,22.6627565982405"
+                    Point3="-4,22.6627565982405" />
+                  <mssgle:LineSegment
+                    End="-55.5,22.6627565982405" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-55.5,22.6627565982405"
+                    Point2="-59.5,22.6627565982405"
+                    Point3="-59.5,26.6627565982405" />
+                  <mssgle:LineSegment
+                    End="-59.5,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-77.94138671875,27.6627565982405,96.3827734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2454,6 +3025,28 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM IMPORT_TRANSACTION_BDR.Paths[OLE DB Source Output]"
+          TopLeft="349.75,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2471,6 +3064,29 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\FROM IMPORT_TRANSACTION_BDR\LOCATION CORRECTIONS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[ST_LOOKUP_Location_Corrections]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\FROM IMPORT_TRANSACTION_BDR\IMPORT_TRANSACTION_BDR">
     <Properties>
       <Property>
@@ -2484,7 +3100,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION">
+    design-time-name="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION_CORRECTED">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2498,6 +3114,19 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_RFID">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FROM IMPORT_TRANSACTION_BDR\PREDWH_CHARGESTATION">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
