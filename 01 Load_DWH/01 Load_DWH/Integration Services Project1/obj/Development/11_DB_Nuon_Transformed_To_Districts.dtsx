@@ -1,0 +1,2104 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/17/2015 1:21:00 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODENHOVEN-PC"
+  DTS:CreatorName="ODENHOVEN-PC\Peter"
+  DTS:DTSID="{9F7DD640-ED5C-47E7-A9CC-0E52776D6FD0}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3436.0"
+  DTS:LocaleID="1043"
+  DTS:ObjectName="11_DB_Nuon_Transformed_To_Districts"
+  DTS:PackageType="5"
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{08AE5FAA-D496-46FC-BDCF-6331A7D60875}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AA8E5D6B-3B5F-4668-BA60-AC73210438F3}"
+      DTS:ObjectName="ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODENHOVEN-PC\SQLSERVER;Initial Catalog=CHIEF_DB_Current;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CFAD88BA-9AD4-4024-B5C4-5F40323D9885}"
+      DTS:ObjectName="ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODENHOVEN-PC\SQLSERVER;Initial Catalog=CHIEF_STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\St_Nuon_Transaction_Transformed_To_Districts"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2B0EAA20-D68A-4079-ADC3-219D8A91A7AC}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="St_Nuon_Transaction_Transformed_To_Districts"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Districts"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TBL_Districts]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].Columns[Street]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Street"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Street]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Street]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].Columns[Nr]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nr"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Nr]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Nr]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].Columns[Postalcode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Postalcode"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Postalcode]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Stad]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[City]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].Columns[District]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="District"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[District]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[District]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].Columns[SubDistrict]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SubDistrict"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[SubDistrict]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[SubDistrict]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].Columns[SubSubDistrict]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SubSubDistrict"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[SubSubDistrict]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[SubSubDistrict]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].Columns[Abbreviation]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Abbreviation"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Abbreviation]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Abbreviation]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Address]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Location_ID]"
+                      dataType="i4"
+                      name="Location_ID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="6"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Stad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Stad" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Street]"
+                      dataType="wstr"
+                      length="100"
+                      name="Street" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Nr]"
+                      dataType="wstr"
+                      length="100"
+                      name="Nr" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="6"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[District]"
+                      dataType="wstr"
+                      length="255"
+                      name="District" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[SubDistrict]"
+                      dataType="wstr"
+                      length="255"
+                      name="SubDistrict" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[SubSubDistrict]"
+                      dataType="wstr"
+                      length="100"
+                      name="SubSubDistrict" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Abbreviation]"
+                      dataType="wstr"
+                      length="6"
+                      name="Abbreviation" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="100"
+                      name="Address" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup existing Address"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[TBL_Districts]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[TBL_Districts]) [refTable]
+where [refTable].[Address] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Location_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Country" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Stad" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Address" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Street" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nr" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PostalCode" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="District" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SubDistrict" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SubSubDistrict" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Abbreviation" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Address]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Inputs[Lookup Input].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Address]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Address</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup existing Postalcode"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[TBL_Districts]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[TBL_Districts]) [refTable]
+where [refTable].[PostalCode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Location_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Country" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Stad" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Address" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Street" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nr" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PostalCode" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="District" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SubDistrict" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SubSubDistrict" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Abbreviation" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Postalcode]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Inputs[Lookup Input].Columns[Postalcode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Postalcode"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Postalcode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PostalCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[District]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[District]"
+                      name="District"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">District</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[SubDistrict]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[SubDistrict]"
+                      name="SubDistrict"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SubDistrict</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[SubSubDistrict]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[SubSubDistrict]"
+                      name="SubSubDistrict"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SubSubDistrict</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[Abbreviation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="6"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[Abbreviation]"
+                      name="Abbreviation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Abbreviation</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast"
+              componentClassID="{EC139FBC-694E-490B-8EA7-35690FB0F445}"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast.Outputs[Multicast Output 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast.Outputs[Multicast Output 2]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast.Outputs[Multicast Output 3]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TBL_Districts_Incomplete]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Address]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Street]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Street"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Street]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Street]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Nr]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nr"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nr]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Nr]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Postalcode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Postalcode"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Postalcode]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[District]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="District"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[District]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[District]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SubDistrict]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="SubDistrict"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubDistrict]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[SubDistrict]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SubSubDistrict]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="SubSubDistrict"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubSubDistrict]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[SubSubDistrict]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Abbreviation]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Abbreviation"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Abbreviation]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[Abbreviation]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Location_ID]"
+                      dataType="i4"
+                      name="Location_ID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="6"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Stad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Stad" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="100"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Street]"
+                      dataType="wstr"
+                      length="100"
+                      name="Street" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Nr]"
+                      dataType="wstr"
+                      length="100"
+                      name="Nr" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="6"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[District]"
+                      dataType="wstr"
+                      length="255"
+                      name="District" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubDistrict]"
+                      dataType="wstr"
+                      length="255"
+                      name="SubDistrict" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubSubDistrict]"
+                      dataType="wstr"
+                      length="100"
+                      name="SubSubDistrict" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Abbreviation]"
+                      dataType="wstr"
+                      length="6"
+                      name="Abbreviation" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Set values UNKNOWN"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[District]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[District]"
+                      name="District"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[SubDistrict]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[SubDistrict]"
+                      name="SubDistrict"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[SubSubDistrict]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[SubSubDistrict]"
+                      name="SubSubDistrict"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[Abbreviation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[Abbreviation]"
+                      name="Abbreviation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ST_TBL_Nuon_Transaction_Transformed]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT Distinct
+     
+      [Country]
+      ,[City]
+      ,[Address]
+      ,[Street]
+      ,[Nr]
+      ,[Postalcode]
+      
+  FROM [CHIEF_STAGING].[dbo].[ST_TBL_Nuon_Transaction_Transformed]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Address]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Address]"
+                      name="Address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Street]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[Street]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Street]"
+                      name="Street"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Nr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[Nr]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Nr]"
+                      name="Nr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Postalcode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[Postalcode]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Postalcode]"
+                      name="Postalcode"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="255"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[Street]"
+                      dataType="wstr"
+                      length="255"
+                      name="Street" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[Nr]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nr" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].ExternalColumns[Postalcode]"
+                      dataType="wstr"
+                      length="255"
+                      name="Postalcode" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[Address]"
+                      name="Address" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[Street]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[Street]"
+                      name="Street" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[Nr]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[Nr]"
+                      name="Nr" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[Postalcode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[Postalcode]"
+                      name="Postalcode" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All"
+              componentClassID="{B594E9A8-4351-4939-891C-CFE1AB93E925}"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="City"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[City]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[City]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Address]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Address]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1].Columns[Street]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Street"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Street]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Street]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1].Columns[Nr]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nr"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Nr]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Nr]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1].Columns[Postalcode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Postalcode"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Postalcode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Postalcode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1].Columns[District]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="District"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[District]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[District]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1].Columns[SubDistrict]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SubDistrict"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[SubDistrict]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[SubDistrict]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1].Columns[SubSubDistrict]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SubSubDistrict"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[SubSubDistrict]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[SubSubDistrict]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1].Columns[Abbreviation]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="Abbreviation"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output].Columns[Abbreviation]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Abbreviation]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="City"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[City]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[City]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Address]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Address]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3].Columns[Street]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Street"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Street]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Street]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3].Columns[Nr]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Nr"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Nr]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Nr]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3].Columns[Postalcode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Postalcode"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output].Columns[Postalcode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Postalcode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3].Columns[District]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="District"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[District]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[District]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3].Columns[SubDistrict]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="SubDistrict"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[SubDistrict]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[SubDistrict]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3].Columns[SubSubDistrict]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="SubSubDistrict"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[SubSubDistrict]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[SubSubDistrict]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3].Columns[Abbreviation]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Abbreviation"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output].Columns[Abbreviation]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Abbreviation]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 2]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[City]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Address]"
+                      name="Address" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Street]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Street]"
+                      name="Street" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Nr]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Nr]"
+                      name="Nr" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Postalcode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Postalcode]"
+                      name="Postalcode" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[District]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[District]"
+                      name="District" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[SubDistrict]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[SubDistrict]"
+                      name="SubDistrict" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[SubSubDistrict]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[SubSubDistrict]"
+                      name="SubSubDistrict" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Abbreviation]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1].Columns[Abbreviation]"
+                      name="Abbreviation" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Derived Column Output]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast.Inputs[Multicast Input 1]"
+              name="Derived Column Output"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Lookup Match Output]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 1]"
+              name="Lookup Match Output"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Lookup No Match Output]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Inputs[Lookup Input]"
+              name="Lookup No Match Output"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Lookup No Match Output1]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN.Inputs[Derived Column Input]"
+              name="Lookup No Match Output"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Multicast Output 1]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Inputs[Union All Input 3]"
+              name="Multicast Output 1"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast.Outputs[Multicast Output 1]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Multicast Output 2]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Multicast Output 2"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[OLE DB Source Output]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Union All Output 1]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="307,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts"
+          TopLeft="266,73" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Districts">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="140,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts"
+          TopLeft="534,586" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address"
+          TopLeft="400,171" />
+        <NodeLayout
+          Size="587,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE"
+          TopLeft="116,63" />
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[OLE DB Source Output]"
+          TopLeft="409.5,105">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87,66"
+              Start="0,0"
+              End="87,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29"
+                    Point2="0,33"
+                    Point3="4,33" />
+                  <mssgle:LineSegment
+                    End="83,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="83,33"
+                    Point2="87,33"
+                    Point3="87,37" />
+                  <mssgle:LineSegment
+                    End="87,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="206,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode"
+          TopLeft="490,275" />
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Lookup No Match Output]"
+          TopLeft="496.5,213">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="96.5,62"
+              Start="0,0"
+              End="96.5,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27"
+                    Point2="0,31"
+                    Point3="4,31" />
+                  <mssgle:LineSegment
+                    End="92.5,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="92.5,31"
+                    Point2="96.5,31"
+                    Point3="96.5,35" />
+                  <mssgle:LineSegment
+                    End="96.5,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-7.55638671875,36,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts\Union All"
+          TopLeft="514,490" />
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Lookup Match Output]"
+          TopLeft="560,317">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.5,173"
+              Start="0,0"
+              End="14.5,165.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,66"
+                    Point2="0,70"
+                    Point3="4,70" />
+                  <mssgle:LineSegment
+                    End="10.5,70" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.5,70"
+                    Point2="14.5,70"
+                    Point3="14.5,74" />
+                  <mssgle:LineSegment
+                    End="14.5,165.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-40.94138671875,75,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="182,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts\Set values UNKNOWN"
+          TopLeft="699,349" />
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Lookup No Match Output1]"
+          TopLeft="626,317">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="164,32"
+              Start="0,0"
+              End="164,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.94797687861272" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.94797687861272"
+                    Point2="0,12.9479768786127"
+                    Point3="4,12.9479768786127" />
+                  <mssgle:LineSegment
+                    End="160,12.9479768786127" />
+                  <mssgle:CubicBezierSegment
+                    Point1="160,12.9479768786127"
+                    Point2="164,12.9479768786127"
+                    Point3="164,16.9479768786127" />
+                  <mssgle:LineSegment
+                    End="164,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="26.19361328125,17.9479768786127,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts\Multicast"
+          TopLeft="755,429" />
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Derived Column Output]"
+          TopLeft="790,391">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25,38"
+              Start="0,0"
+              End="25,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="4,19" />
+                  <mssgle:LineSegment
+                    End="21,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21,19"
+                    Point2="25,19"
+                    Point3="25,23" />
+                  <mssgle:LineSegment
+                    End="25,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Multicast Output 1]"
+          TopLeft="755,450">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-120,61"
+              Start="0,0"
+              End="-112.5,61">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-56,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-56,0"
+                    Point2="-60,0"
+                    Point3="-60,4" />
+                  <mssgle:LineSegment
+                    End="-60,57" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-60,57"
+                    Point2="-60,61"
+                    Point3="-64,61" />
+                  <mssgle:LineSegment
+                    End="-112.5,61" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Union All Output 1]"
+          TopLeft="574.5,532">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29.5,54"
+              Start="0,0"
+              End="29.5,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23"
+                    Point2="0,27"
+                    Point3="4,27" />
+                  <mssgle:LineSegment
+                    End="25.5,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.5,27"
+                    Point2="29.5,27"
+                    Point3="29.5,31" />
+                  <mssgle:LineSegment
+                    End="29.5,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination"
+          TopLeft="781,589" />
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Districts.Paths[Multicast Output 2]"
+          TopLeft="815,471">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51.5,118"
+              Start="0,0"
+              End="51.5,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,55"
+                    Point2="0,59"
+                    Point3="4,59" />
+                  <mssgle:LineSegment
+                    End="47.5,59" />
+                  <mssgle:CubicBezierSegment
+                    Point1="47.5,59"
+                    Point2="51.5,59"
+                    Point3="51.5,63" />
+                  <mssgle:LineSegment
+                    End="51.5,110.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Districts\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Postalcode">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[TBL_Districts]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Districts\Lookup existing Address">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[TBL_Districts]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Districts\Districts">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Districts\ST_Nuon_Transaction_Transformed SELECT DISTINCT COUNTRY,CITY,ADDRESS,STREET,NR,POSTALCODE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

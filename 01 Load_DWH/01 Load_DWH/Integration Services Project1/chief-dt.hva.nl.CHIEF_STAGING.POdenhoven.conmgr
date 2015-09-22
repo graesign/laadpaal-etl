@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="chief-dt.hva.nl.CHIEF_STAGING.POdenhoven"
+  DTS:DTSID="{660CD9D8-96E4-40AA-A9A5-7196B361825E}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=chief-dt.hva.nl;User ID=POdenhoven;Initial Catalog=CHIEF_STAGING;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4JstfLtXvkaK6QjxhqL14gAAAAACAAAAAAAQZgAAAAEAACAAAACJ+4xjQ/oyLuktB3l6F9EmR1PZZLZmSUVgQnBTqJIpWAAAAAAOgAAAAAIAACAAAACnr6l7d/pGAkQHU3LLuHxfFz1kS2L6otQf/XNxxqyLEYAAAAC8G1hvmuKpBSeLV+QdoH050IcHusa2ucuCKj9X6itaEiHLnPMKXynGRh8FdqVagUh9p1dfrEhEMIkgxGbvOSvZOewUx10sTf8wX1ALqMFky7q0YO4YSJHv1XBQzI0Ms/42EUj3iPg+6RpgSLxzBF2s/WtQvJzKeww2A6wP3EKDBkAAAABzMF8VaLwAcCIx5v7j7HDq5LTCXQw0g35xkin6nyDLPaJHyFG3Hsn5C7z5/Og7ODWi23aqJwoPApZUcyu3Fxt3</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

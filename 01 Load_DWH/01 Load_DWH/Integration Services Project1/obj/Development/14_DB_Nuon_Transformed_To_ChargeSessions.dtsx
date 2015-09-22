@@ -1,0 +1,2010 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/17/2015 4:08:35 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ODENHOVEN-PC"
+  DTS:CreatorName="ODENHOVEN-PC\Peter"
+  DTS:DTSID="{7BE241CA-959F-48D6-AC0D-CF680B88EAD8}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3436.0"
+  DTS:LocaleID="1043"
+  DTS:ObjectName="14_DB_Nuon_Transformed_To_ChargeSessions"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{E03BC8D7-FE60-4660-A97B-C950A6E37AC9}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DAD5F3D7-173C-4C30-9F25-FC87533D77A0}"
+      DTS:ObjectName="ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODENHOVEN-PC\SQLSERVER;Initial Catalog=CHIEF_DB_Current;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{59201077-D41A-4C86-B71C-98BCC2650B80}"
+      DTS:ObjectName="ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODENHOVEN-PC\SQLSERVER;Initial Catalog=CHIEF_DB_Current;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4052C092-306C-4022-AB63-620EFFE9FEB0}"
+      DTS:ObjectName="ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ODENHOVEN-PC\SQLSERVER;Initial Catalog=CHIEF_STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{76BEFA9D-F572-48FD-B923-F2B5C0A36385}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="St_Nuon_Transaction_Transformed_To_Chargesessions"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ChargeSessions"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TBL_ChargeSessions]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[RFID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RFID"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[RFID]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[Provider]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Provider"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Provider]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Provider]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[Street]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Street"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Street]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Street]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[Nr]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nr"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Nr]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Nr]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[Postalcode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Postalcode"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Postalcode]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[StartConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartConnectionDateTime"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDateTime]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[EndConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndConnectionDateTime"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDateTime]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[kWh]"
+                      cachedDataType="r8"
+                      cachedName="kWh"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[kWh]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[kWh]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[Socket]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Socket"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Socket]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Socket]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[Charge_Point_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Charge_Point_ID"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Charge_Point_ID]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[CDR_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CDR_ID"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[CDR_ID]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[CDR_ID]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[StartChargeDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartChargeDateTime"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeDateTime]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[StartChargeDateTime]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[AmountShortSessions]"
+                      cachedDataType="i4"
+                      cachedName="AmountShortSessions"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[AmountShortSessions]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[AmountShortSessions]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[LambdaSyncStation]"
+                      cachedDataType="i4"
+                      cachedName="LambdaSyncStation"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[LambdaSyncStation]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[LambdaSyncStation]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[LambdaSyncRFID]"
+                      cachedDataType="i4"
+                      cachedName="LambdaSyncRFID"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[LambdaSyncRFID]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[LambdaSyncRFID]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[HourtimeConnectedSync]"
+                      cachedDataType="i4"
+                      cachedName="HourtimeConnectedSync"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[HourtimeConnectedSync]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[HourtimeConnectedSync]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[HourTimeChargedSync]"
+                      cachedDataType="i4"
+                      cachedName="HourTimeChargedSync"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[HourtimeChargedSync]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[HourTimeChargedSync]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[FileName]"
+                      cachedDataType="i4"
+                      cachedName="FileName"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Filename]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[FileName]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].Columns[FilenameLookedUp]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FilenameLookedUp"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[RawDataID]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Match Output].Columns[FilenameLookedUp]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      dataType="wstr"
+                      length="50"
+                      name="RFID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Provider]"
+                      dataType="wstr"
+                      length="50"
+                      name="Provider" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="3"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="100"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Street]"
+                      dataType="wstr"
+                      length="100"
+                      name="Street" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Nr]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nr" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="6"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartChargeDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[EndChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndChargeDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[ConnectionTime]"
+                      dataType="r8"
+                      name="ConnectionTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[ChargeTime]"
+                      dataType="r8"
+                      name="ChargeTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[kWh]"
+                      dataType="r8"
+                      name="kWh" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Socket]"
+                      dataType="wstr"
+                      length="50"
+                      name="Socket" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[AmountShortSessions]"
+                      dataType="i4"
+                      name="AmountShortSessions" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[RawDataID]"
+                      dataType="wstr"
+                      length="50"
+                      name="RawDataID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Filename]"
+                      dataType="wstr"
+                      length="50"
+                      name="Filename" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[LambdaSyncStation]"
+                      dataType="bool"
+                      name="LambdaSyncStation" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[LambdaSyncRFID]"
+                      dataType="bool"
+                      name="LambdaSyncRFID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[HourtimeConnectedSync]"
+                      dataType="bool"
+                      name="HourtimeConnectedSync" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[HourtimeChargedSync]"
+                      dataType="bool"
+                      name="HourtimeChargedSync" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[ChargeSession_ID]"
+                      dataType="i4"
+                      name="ChargeSession_ID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[REMARKS]"
+                      dataType="wstr"
+                      length="255"
+                      name="REMARKS" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[shortTimeSync]"
+                      dataType="bool"
+                      name="shortTimeSync" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Charge_Point_ID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input].ExternalColumns[CDR_ID]"
+                      dataType="wstr"
+                      length="100"
+                      name="CDR_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ChargeSessionsShort"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TBL_ChargeSessionsShort]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_DB_Current]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[RFID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RFID"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[RFID]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[Provider]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Provider"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Provider]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Provider]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[Street]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Street"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Street]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Street]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[Nr]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Nr"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Nr]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Nr]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[Postalcode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Postalcode"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Postalcode]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[StartConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartConnectionDateTime"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDateTime]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[EndConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndConnectionDateTime"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDateTime]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[Socket]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Socket"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Socket]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Socket]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[Charge_Point_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Charge_Point_ID"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Charge_Point_ID]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[CDR_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CDR_ID"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[CDR_ID]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[CDR_ID]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[StartChargeDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartChargeDateTime"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeDateTime]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[StartChargeDateTime]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[AmountShortSessions]"
+                      cachedDataType="i4"
+                      cachedName="AmountShortSessions"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[AmountShortSessions]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[AmountShortSessions]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[LambdaSyncStation]"
+                      cachedDataType="i4"
+                      cachedName="LambdaSyncStation"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[LambdaSyncStation]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[LambdaSyncStation]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[LambdaSyncRFID]"
+                      cachedDataType="i4"
+                      cachedName="LambdaSyncRFID"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[LambdaSyncRFID]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[LambdaSyncRFID]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[HourtimeConnectedSync]"
+                      cachedDataType="i4"
+                      cachedName="HourtimeConnectedSync"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[HourtimeConnectedSync]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[HourtimeConnectedSync]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[HourTimeChargedSync]"
+                      cachedDataType="i4"
+                      cachedName="HourTimeChargedSync"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[HourtimeChargedSync]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[HourTimeChargedSync]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[ConnectionTime]"
+                      cachedDataType="r8"
+                      cachedName="ConnectionTime"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[ConnectionTime]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[ConnectionTime]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[kWh]"
+                      cachedDataType="r8"
+                      cachedName="kWh"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[kWh]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[kWh]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[FileName]"
+                      cachedDataType="i4"
+                      cachedName="FileName"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Filename]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[FileName]" />
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].Columns[FilenameLookedUp]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FilenameLookedUp"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[RawDataID]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Match Output].Columns[FilenameLookedUp]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[RFID]"
+                      dataType="wstr"
+                      length="50"
+                      name="RFID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Provider]"
+                      dataType="wstr"
+                      length="50"
+                      name="Provider" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="3"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="100"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Street]"
+                      dataType="wstr"
+                      length="100"
+                      name="Street" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Nr]"
+                      dataType="wstr"
+                      length="50"
+                      name="Nr" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="6"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[StartConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[EndConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[StartChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartChargeDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[EndChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndChargeDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[ConnectionTime]"
+                      dataType="r8"
+                      name="ConnectionTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[ChargeTime]"
+                      dataType="r8"
+                      name="ChargeTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[kWh]"
+                      dataType="r8"
+                      name="kWh" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Socket]"
+                      dataType="wstr"
+                      length="50"
+                      name="Socket" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[AmountShortSessions]"
+                      dataType="i4"
+                      name="AmountShortSessions" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[RawDataID]"
+                      dataType="wstr"
+                      length="50"
+                      name="RawDataID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Filename]"
+                      dataType="wstr"
+                      length="50"
+                      name="Filename" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[LambdaSyncStation]"
+                      dataType="bool"
+                      name="LambdaSyncStation" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[LambdaSyncRFID]"
+                      dataType="bool"
+                      name="LambdaSyncRFID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[HourtimeConnectedSync]"
+                      dataType="bool"
+                      name="HourtimeConnectedSync" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[HourtimeChargedSync]"
+                      dataType="bool"
+                      name="HourtimeChargedSync" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[ChargeSession_ID]"
+                      dataType="i4"
+                      name="ChargeSession_ID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[REMARKS]"
+                      dataType="wstr"
+                      length="255"
+                      name="REMARKS" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[shortTimeSync]"
+                      dataType="bool"
+                      name="shortTimeSync" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[Charge_Point_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Charge_Point_ID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input].ExternalColumns[CDR_ID]"
+                      dataType="wstr"
+                      length="100"
+                      name="CDR_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup FileName"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[ST_LOG_ExtractedFile]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[ST_LOG_ExtractedFile]) [refTable]
+where [refTable].[ExecutionInstanceGUID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Filename" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Provider" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ExtractionDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ExecutionInstanceGUID" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Inputs[Lookup Input].Columns[ExecutionInstanceGUID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ExecutionInstanceGUID"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ExecutionInstanceGUID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Match Output].Columns[FilenameLookedUp]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Match Output].Columns[FilenameLookedUp]"
+                      name="FilenameLookedUp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Filename</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Set missing and default values"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Inputs[Derived Column Input].Columns[StartConnectionDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartConnectionDateTime"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[StartChargeDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[StartChargeDateTime]"
+                      name="StartChargeDateTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">StartConnectionDateTime</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[AmountShortSessions]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[AmountShortSessions]"
+                      name="AmountShortSessions"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[FileName]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[FileName]"
+                      name="FileName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[LambdaSyncStation]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[LambdaSyncStation]"
+                      name="LambdaSyncStation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[LambdaSyncRFID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[LambdaSyncRFID]"
+                      name="LambdaSyncRFID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[HourtimeConnectedSync]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[HourtimeConnectedSync]"
+                      name="HourtimeConnectedSync"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[HourTimeChargedSync]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output].Columns[HourTimeChargedSync]"
+                      name="HourTimeChargedSync"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Split into Short Sessions en Long Sessions"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Inputs[Conditional Split Input].Columns[ConnectionTime]"
+                      cachedDataType="r8"
+                      cachedName="ConnectionTime"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[ConnectionTime]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Outputs[ShortSessions]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="ShortSessions"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[ConnectionTime]} &lt; (5.0 / 60.0)</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ConnectionTime &lt; (5.0 / 60.0)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Outputs[LongSessions]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="LongSessions"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ST_Nuon_Transaction_Transformed"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ST_TBL_Nuon_Transaction_Transformed]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODENHOVEN-PC\SQLSERVER.CHIEF_STAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[RFID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[RFID]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[RFID]"
+                      name="RFID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Provider]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Provider]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Provider]"
+                      name="Provider"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Street]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Street]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Street]"
+                      name="Street"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Nr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Nr]"
+                      length="50"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Nr]"
+                      name="Nr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Postalcode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Postalcode]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Postalcode]"
+                      name="Postalcode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[StartConnectionDateTime]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[StartConnectionDateTime]"
+                      name="StartConnectionDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[EndConnectionDateTime]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[EndConnectionDateTime]"
+                      name="EndConnectionDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[kWh]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[kWh]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[kWh]"
+                      name="kWh"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Socket]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Socket]"
+                      length="50"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Socket]"
+                      name="Socket"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Charge_Point_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Charge_Point_ID]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Charge_Point_ID]"
+                      name="Charge_Point_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[CDR_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[CDR_ID]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[CDR_ID]"
+                      name="CDR_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Contract_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Contract_ID]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Contract_ID]"
+                      name="Contract_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Service_Provider_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Service_Provider_ID]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[Service_Provider_ID]"
+                      name="Service_Provider_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[ConnectionTime]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[ConnectionTime]"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[ConnectionTime]"
+                      name="ConnectionTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[ExecutionInstanceGUID]"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].Columns[ExecutionInstanceGUID]"
+                      name="ExecutionInstanceGUID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[RFID]"
+                      dataType="wstr"
+                      length="255"
+                      name="RFID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Provider]"
+                      dataType="wstr"
+                      length="255"
+                      name="Provider" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="255"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Street]"
+                      dataType="wstr"
+                      length="255"
+                      name="Street" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Nr]"
+                      dataType="wstr"
+                      length="255"
+                      name="Nr" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Postalcode]"
+                      dataType="wstr"
+                      length="255"
+                      name="Postalcode" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[StartConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="StartConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[EndConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EndConnectionDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[kWh]"
+                      dataType="r8"
+                      name="kWh" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Socket]"
+                      dataType="wstr"
+                      length="255"
+                      name="Socket" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Charge_Point_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Charge_Point_ID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[CDR_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="CDR_ID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Contract_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Contract_ID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[Service_Provider_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Service_Provider_ID" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[ConnectionTime]"
+                      dataType="r8"
+                      name="ConnectionTime" />
+                    <externalMetadataColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output].ExternalColumns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      length="255"
+                      name="ExecutionInstanceGUID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[RFID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[RFID]"
+                      name="RFID" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Provider]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Provider]"
+                      name="Provider" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Street]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Street]"
+                      name="Street" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Nr]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Nr]"
+                      name="Nr" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Postalcode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Postalcode]"
+                      name="Postalcode" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[StartConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[StartConnectionDateTime]"
+                      name="StartConnectionDateTime" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[EndConnectionDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[EndConnectionDateTime]"
+                      name="EndConnectionDateTime" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[ConnectionTime]"
+                      dataType="r8"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[ConnectionTime]"
+                      name="ConnectionTime" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[kWh]"
+                      dataType="r8"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[kWh]"
+                      name="kWh" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Socket]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Socket]"
+                      name="Socket" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Charge_Point_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Charge_Point_ID]"
+                      name="Charge_Point_ID" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[CDR_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[CDR_ID]"
+                      name="CDR_ID" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Contract_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Contract_ID]"
+                      name="Contract_ID" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Service_Provider_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[Service_Provider_ID]"
+                      name="Service_Provider_ID" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[ExecutionInstanceGUID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[ExecutionInstanceGUID]"
+                      name="ExecutionInstanceGUID" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions.Paths[Derived Column Output]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions.Paths[LongSessions]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions.Inputs[OLE DB Destination Input]"
+              name="LongSessions"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Outputs[LongSessions]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions.Paths[Lookup Match Output]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions.Paths[OLE DB Source Output]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions.Paths[ShortSessions]"
+              endId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort.Inputs[OLE DB Destination Input]"
+              name="ShortSessions"
+              startId="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions.Outputs[ShortSessions]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="341,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions"
+          TopLeft="218,109" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Chargesessions">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort"
+          TopLeft="611,392" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName"
+          TopLeft="616,225" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed"
+          TopLeft="147,73" />
+        <NodeLayout
+          Size="277,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Split into Short Sessions en Long Sessions"
+          TopLeft="764,298" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Set missing and default values"
+          TopLeft="395,153" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions"
+          TopLeft="969,392" />
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions.Paths[ShortSessions]"
+          TopLeft="902.5,340">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-203,52"
+              Start="0,0"
+              End="-203,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="-4,26" />
+                  <mssgle:LineSegment
+                    End="-199,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-199,26"
+                    Point2="-203,26"
+                    Point3="-203,30" />
+                  <mssgle:LineSegment
+                    End="-203,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-132.7332421875,31,62.466484375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions.Paths[OLE DB Source Output]"
+          TopLeft="271,115">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="235,38"
+              Start="0,0"
+              End="235,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="4,19" />
+                  <mssgle:LineSegment
+                    End="231,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="231,19"
+                    Point2="235,19"
+                    Point3="235,23" />
+                  <mssgle:LineSegment
+                    End="235,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions.Paths[Lookup Match Output]"
+          TopLeft="696,267">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="206.5,31"
+              Start="0,0"
+              End="206.5,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="202.5,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="202.5,15.5"
+                    Point2="206.5,15.5"
+                    Point3="206.5,19.5" />
+                  <mssgle:LineSegment
+                    End="206.5,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="55.05861328125,20.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions.Paths[LongSessions]"
+          TopLeft="947.333333333333,340">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="97.6666666666667,52"
+              Start="0,0"
+              End="97.6666666666667,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9791816223977" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.9791816223977"
+                    Point2="0,20.9791816223977"
+                    Point3="4,20.9791816223977" />
+                  <mssgle:LineSegment
+                    End="93.6666666666667,20.9791816223977" />
+                  <mssgle:CubicBezierSegment
+                    Point1="93.6666666666667,20.9791816223977"
+                    Point2="97.6666666666667,20.9791816223977"
+                    Point3="97.6666666666667,24.9791816223977" />
+                  <mssgle:LineSegment
+                    End="97.6666666666667,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="18.7807552083334,25.9791816223977,60.10515625,11.4677734375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\St_Nuon_Transaction_Transformed_To_Chargesessions.Paths[Derived Column Output]"
+          TopLeft="506,195">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="190,30"
+              Start="0,0"
+              End="190,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11"
+                    Point2="0,15"
+                    Point3="4,15" />
+                  <mssgle:LineSegment
+                    End="186,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="186,15"
+                    Point2="190,15"
+                    Point3="190,19" />
+                  <mssgle:LineSegment
+                    End="190,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessionsShort">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\Lookup FileName">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[ST_LOG_ExtractedFile]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ST_Nuon_Transaction_Transformed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\St_Nuon_Transaction_Transformed_To_Chargesessions\ChargeSessions">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
